@@ -61,14 +61,6 @@ document.addEventListener('DOMContentLoaded', function() {
       label: "Bulgarian",
       chars: bulgarian
     },
-    kazakh: {
-      label: "Kazakh",
-      chars: kazakh
-    },
-    kyrgyz: {
-      label: "Kyrgyz",
-      chars: kyrgyz
-    },
     macedonian: {
       label: "Macedonian",
       chars: macedonian
@@ -85,21 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
       label: "Russian",
       chars: russian
     },
-    tajik: {
-      label: "Tajik",
-      chars: tajik
-    },
     ukrainian: {
       label: "Ukrainian",
       chars: ukrainian
-    },
-    uzbek: {
-      label: "Uzbek",
-      chars: uzbek
-    },
-    church_slavonic: {
-      label: "Slavonic",
-      chars: church_slavonic
     },
     all: {
       label: "Full Cyrillic",
