@@ -2576,10 +2576,7 @@ const availableStyles = {
     { value: 'bgn_pcgn', label: 'BGN/PCGN' }, 
     { value: 'gost_7_79_2000_b', label: 'GOST 7.79-2000 (Diacritics)' }, 
     { value: 'gost_7_79_2000_a', label: 'GOST 7.79-2000 (Sans Diacritics)' },
-    { value: 'national', label: 'National' }, 
-    { value: 'duden', label: 'DUDEN (German Transcription)' }, 
-    { value: 'bordas', label: 'Dictionnaire Bordas (French Transcription)' }, 
-    { value: 'swedish', label: 'Swedish Transcription' } 
+    { value: 'national', label: 'National' }
   ],
 
   belarusian: [
@@ -2591,9 +2588,6 @@ const availableStyles = {
     { value: 'bs_2979', label: 'British Standard 2979' },
     { value: 'bgn_pcgn', label: 'BGN/PCGN' },
     { value: 'national_2023', label: 'National (2023)' }, 
-    { value: 'duden', label: 'DUDEN (German Transcription)' }, 
-    { value: 'bordas', label: 'Dictionnaire Bordas (French Transcription)' },
-    { value: 'swedish', label: 'Swedish Transcription' },
     { value: 'lacinka', label: 'Łacinka' }
   ],
 
@@ -2606,10 +2600,7 @@ const availableStyles = {
     { value: 'bs_2979', label: 'British Standard 2979' },
     { value: 'national_dstu_9112_2021_a', label: 'National (DSTU 9112:2021 A)' },
     { value: 'national_dstu_9112_2021_b', label: 'National (DSTU 9112:2021 B)' },
-    { value: 'national_rm_p55_2010', label: 'BGN/PCGN 2019 / RM-P55 2010' },
-    { value: 'duden', label: 'DUDEN (German Transcription)' },
-    { value: 'bordas', label: 'Dictionnaire Bordas (French Transcription)' },
-    { value: 'swedish', label: 'Swedish Transcription' }
+    { value: 'national_rm_p55_2010', label: 'BGN/PCGN 2019 / RM-P55 2010' }
   ],
 
   bcms: [
