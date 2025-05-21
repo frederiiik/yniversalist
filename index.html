@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Yniversalist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wdth,wght@87.5,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Monomakh&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,0" />
+<link rel="stylesheet" href="index.css">
+<link rel="icon" href="favicon.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-wrapper">
+        <div class="menu-dropdown">
+          <select class="header-select" onchange="window.location.href=this.value" onblur="this.selectedIndex=0">
+            <option value="#" selected>MORE</option>
+            <option value="https://github.com">🤖 GitHub</option>
+            <option value="mailto:yniversalist@icloud.com">🥴 Report an Error</option>
+          </select>
+        </div>
+        <div class="dark-mode-toggle">
+          <button class="theme-button" id="themeToggle">
+            <span class="material-symbols-outlined">brightness_medium</span>
+          </button>
+        </div>
+         <div class="dark-mode-toggle">
+          <button class="theme-button" id="docButton">
+            <span class="material-symbols-outlined">description</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="controls">
+      <div class="button-group">
+      <div class="slider-container">
+        <button class="slider-option active" id="cyrillicBtn" onclick="setLanguage('cyrillic')">&nbsp;Cyrillic&nbsp;</button>
+        <button class="slider-option" id="latinBtn" onclick="setLanguage('latin')">&nbsp;Latin&nbsp;</button>
+      </div>
+        <div class="select-wrapper">
+          <select id="languageSelect" class="select-input">
+            <option value="">Select Language</option>
+            <option value="bcms">BCMS</option>
+            <option value="belarusian">Belarusian</option>
+            <option value="bulgarian">Bulgarian</option>
+            <option value="macedonian">Macedonian</option>
+            <option value="romanian_cyrillic_moldovan">Romanian</option>
+            <option value="russian">Russian</option>
+            <option value="rusyn">Rusyn</option>
+            <option value="ukrainian">Ukrainian</option>
+          </select>
+          <span class="select-arrow">▾</span>
+        </div>
+        <div class="select-wrapper">
+          <select id="styleSelect" class="select-input">
+            <option value="">Select Style</option>
+          </select>
+          <span class="select-arrow">▾</span>
+        </div>
+        <button id="addFavorite" class="add-favorite">
+          <span class="material-symbols-outlined" style="user-select: none;">heart_plus</span>
+        </button>
+      </div>
+      <div id="favoritesSection" class="favorites-section">
+      </div>
+    </div>
+
+    <div class="text-fields-container">
+      <div class="input-container">
+        <textarea id="inputText" class="text-area" placeholder="Enter text here..."></textarea>
+        <div class="keyboard-icon" id="keyboardToggle">
+          <span class="material-symbols-outlined">keyboard</span>
+        </div>
+        <div class="virtual-keyboard" id="virtualKeyboard">
+          <div class="keyboard-tabs" id="keyboardTabs">
+            <button class="keyboard-tab" data-section="bcms">BCMS</button>            
+            <button class="keyboard-tab" data-section="belarusian">Belarusian</button>
+            <button class="keyboard-tab" data-section="bulgarian">Bulgarian</button>
+            <button class="keyboard-tab" data-section="macedonian">Macedonian</button>
+            <button class="keyboard-tab" data-section="moldovan">Romanian</button>
+            <button class="keyboard-tab active" data-section="russian">Russian</button>
+            <button class="keyboard-tab" data-section="rusyn">Rusyn</button>
+            <button class="keyboard-tab" data-section="ukrainian">Ukrainian</button>
+            <button class="keyboard-tab" data-section="all">Full Cyrillic</button>
+            <button class="keyboard-tab" data-section="latin_all">Full Latin</button>
+          </div>
+          <div class="keyboard-grid" id="keyboardGrid"></div>
+        </div>
+      </div>
+      <div class="text-separator"></div>
+      <div class="input-container">
+        <textarea id="outputText" class="text-area"></textarea>
+        <div class="keyboard-icon" id="copyButton">
+          <span class="material-symbols-outlined">content_copy</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button id="convertButton" class="button">Convert</button>
+    </div>
+
+    <div class="history-section">
+      <div class="history-header" id="historyToggle">
+        <h2 class="history-title">History</h2>
+        <span class="history-chevron">+</span>
+      </div>
+      <div id="historyList" class="history-list"></div>
+    </div>
+  </div>
+
+  <div id="docOverlay" class="doc-overlay">
+  <div class="doc-content">
+    <div class="doc-header">
+        <div class="header-text">Documentation</div>
+        <button id="closeDoc" class="doc-close">×</button>
+      <div class="nav-scroll-container">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#bcms" class="nav-link">BCMS</a>
+        <a href="#belarusian" class="nav-link">Belarusian</a>
+        <a href="#bulgarian" class="nav-link">Bulgarian</a>
+        <a href="#macedonian" class="nav-link">Macedonian</a>
+        <a href="#romanian" class="nav-link">Romanian</a>
+        <a href="#russian" class="nav-link">Russian</a>
+        <a href="#rusyn" class="nav-link">Rusyn</a>
+        <a href="#ukrainian" class="nav-link">Ukrainian</a>
+      </div>
+    </div>
+
+    <div id="russianDoc" class="doc-section">
+    <div id="about" class="title title-primary">About</div>
+    <p class="text">Yniversalist is a tool for converting between Cyrillic and Latin alphabets.</p> 
+    <p class="text">Transliteration is the process of converting text from one writing system to another, focusing on preserving the written appearance by representing characters of one alphabet with corresponding characters of another (e.g. Ukrainian <span class="tag tag-primary-reverse">Шевченко</span> to Latin <span class="tag tag-primary-reverse">Ševčenko</span>). Transcription, on the other hand, focuses on preserving pronunciation rather than spelling by representing the sounds of speech in a standardised way (e.g. Ukrainian <span class="tag tag-primary-reverse">Шевченко</span> to English <span class="tag tag-primary-reverse">Shevchenko</span>).</p> 
+    <div class="box box-primary">
+      <span class="tag tag-highlight">Bidirectional Conversion</span>
+      <p class="text">Yniversalist supports bidirectional conversion between Cyrillic and Latin scripts. Language-Style combinations that reliably support this two-way conversion are marked with <span class="tag tag-green">↻</span> in the documentation.</p>
+    </div>
+
+    <div class="box box-primary">
+      <span class="tag tag-highlight">Favourites</span>
+      <p class="text">You can save up to ten frequently used language-style combinations as favourites. Favourites can be deleted by clicking on the star <span class="tag tag-primary">☆</span> next to the language of the respective favourite.</p>
+    </div>
+
+      <div class="box box-primary">
+        <span class="tag tag-highlight">Privacy Notice</span>
+        <p class="text">Yniversalist does not collect or store any of your data. Your data, including favourised combinations, conversion history, and theme settings, are stored locally in your browser cache. You can remove this data by clearing your browser cache. For information on data collection by GitHub Pages, which hosts Yniversalist, please refer to <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" style="color: var(--color-primary);">their privacy statement</a>.</p>
+      </div>
+
+
+    <div class="notes-container">
+       <div class="notes-header">
+         <h4 class="notes-title">Note on Character Normalisation</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text">When reverse converting from Latin to Cyrillic, it might happen that the input text contains unicode characters not represented in the conversion mappings used by Yniversalist. This concerns primarily the use of combined characters, whereas the character mappings predominantly consist of precomposed characters, but also potential OCR errors resulting in the inclusion of similar looking characters. To reduce the number of errors, these characters (both uppercase and lowercase) are automatically exchanged with characters represented in the conversion mapping to ensure proper conversion.</p>
+          <p class="text">If characters in your input match the normalisation mapping, you'll receive a notification about any replacements, provided notifications are permitted.</p>
+          <table table-alternative>
+          <tbody>
+            <tr>
+              <td style="font-family: var(--font-family); font-weight: 600; font-size: var(--font-size-base); color: var(--color-primary); background-color: var(--bg-color); border: 1.5px solid var(--field-bg);">Character</td>
+              <td style="font-family: var(--font-family); font-weight: 600; font-size: var(--font-size-base); color: var(--color-primary); background-color: var(--bg-color); border: 1.5px solid var(--field-bg);">Confusables</td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">a <span class="tag tag-primary">U+0061</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">α <span class="tag tag-primary">U+03B1</span><br>а <span class="tag tag-primary">U+0430</span><br>Ꭺ <span class="tag tag-primary">U+13AA</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">b <span class="tag tag-primary">U+0062</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">β <span class="tag tag-primary">U+03B2</span><br>в <span class="tag tag-primary">U+0432</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">c <span class="tag tag-primary">U+0063</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">с <span class="tag tag-primary">U+0441</span><br>Ⅽ <span class="tag tag-primary">U+216D</span><br>Ꮯ <span class="tag tag-primary">U+13DF</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">c̨̆ <span class="tag tag-primary">U+0063 <br>U+0328 <br>U+0306</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">с̨̆ <span class="tag tag-primary">U+0441<br> U+0328<br> U+0306</span><br>с̨٘ <span class="tag tag-primary">U+0441<br> U+0328<br> U+0618</span><br>с̨ٚ <span class="tag tag-primary">U+0441<br> U+0328<br> U+061A</span><br>с̨̌ <span class="tag tag-primary">U+0441<br> U+0328<br> U+030C</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">d <span class="tag tag-primary">U+0064</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">Ꭰ <span class="tag tag-primary">U+13A0</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">d <span class="tag tag-primary">U+0064</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ԁ <span class="tag tag-primary">U+0501</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">e <span class="tag tag-primary">U+0065</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ε <span class="tag tag-primary">U+03B5</span><br>е <span class="tag tag-primary">U+0435</span><br>ⴹ <span class="tag tag-primary">U+2D39</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">f <span class="tag tag-primary">U+0066</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ϝ <span class="tag tag-primary">U+03DD</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">g <span class="tag tag-primary">U+0067</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ɡ <span class="tag tag-primary">U+0261</span><br>ɢ <span class="tag tag-primary">U+0262</span><br>ԍ <span class="tag tag-primary">U+050D</span><br>Ꮐ <span class="tag tag-primary">U+13B0</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">h <span class="tag tag-primary">U+0068</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">н <span class="tag tag-primary">U+043D</span><br>η <span class="tag tag-primary">U+03B7</span><br>н <span class="tag tag-primary">U+043D</span><br>Ꮋ <span class="tag tag-primary">U+13C7</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ḥ <span class="tag tag-primary">U+1E25</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ḥ <span class="tag tag-primary">U+1E25</span><br>𝖧࣭ <span class="tag tag-primary">U+1D5A7<br> U+08ED</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">i <span class="tag tag-primary">U+0069</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">і <span class="tag tag-primary">U+0456</span><br>ӏ <span class="tag tag-primary">U+04CF</span><br>ǀ <span class="tag tag-primary">U+01C0</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ĭ <span class="tag tag-primary">U+012D</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">і̆ <span class="tag tag-primary">U+0456<br> U+0306</span><br>Ῐ <span class="tag tag-primary">U+1FD0</span><br>l̆ <span class="tag tag-primary">U+006C<br> U+0306</span><br>ĭ <span class="tag tag-primary">U+012D</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">j <span class="tag tag-primary">U+006A</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ј <span class="tag tag-primary">U+0458</span><br>Ꭻ <span class="tag tag-primary">U+13AB</span><br>Ϳ <span class="tag tag-primary">U+037F</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">k <span class="tag tag-primary">U+006B</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">κ <span class="tag tag-primary">U+03BA</span><br>к <span class="tag tag-primary">U+043A</span><br>Ꮶ <span class="tag tag-primary">U+13B6</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">l <span class="tag tag-primary">U+006C</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">Ꮮ <span class="tag tag-primary">U+13DE</span><br>լ <span class="tag tag-primary">U+056C</span><br>Ⳑ <span class="tag tag-primary">U+2CD1</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">m <span class="tag tag-primary">U+006D</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">μ <span class="tag tag-primary">U+03BC</span><br>м <span class="tag tag-primary">U+043C</span><br>Ꮇ <span class="tag tag-primary">U+13B7</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">n <span class="tag tag-primary">U+006E</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ν <span class="tag tag-primary">U+03BD</span><br>Ⲛ <span class="tag tag-primary">U+2C9A</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">o <span class="tag tag-primary">U+006F</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ο <span class="tag tag-primary">U+03BF</span><br>о <span class="tag tag-primary">U+043E</span><br>𐤏 <span class="tag tag-primary">U+1090F</span><br>օ <span class="tag tag-primary">U+0585</span><br>𐌏 <span class="tag tag-primary">U+1030F</span><br>Ⲟ <span class="tag tag-primary">U+2C9F</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">p <span class="tag tag-primary">U+0070</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">Ꮲ <span class="tag tag-primary">U+13E2</span><br>ρ <span class="tag tag-primary">U+03C1</span><br>р <span class="tag tag-primary">U+0440</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">q <span class="tag tag-primary">U+0071</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">Ԛ <span class="tag tag-primary">U+051A</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">r <span class="tag tag-primary">U+0072</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">Ꭱ <span class="tag tag-primary">U+13A1</span><br>Ꮢ <span class="tag tag-primary">U+13E2</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">s <span class="tag tag-primary">U+0073</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ѕ <span class="tag tag-primary">U+0455</span><br>Ꮪ <span class="tag tag-primary">U+13DA</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">t <span class="tag tag-primary">U+0074</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">τ <span class="tag tag-primary">U+03C4</span><br>т <span class="tag tag-primary">U+0442</span><br>Ꭲ <span class="tag tag-primary">U+13A2</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">u <span class="tag tag-primary">U+0075</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ս <span class="tag tag-primary">U+057D</span><br>ꓴ <span class="tag tag-primary">U+A4F4</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">v <span class="tag tag-primary">U+0076</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">∨ <span class="tag tag-primary">U+2228</span><br>۷ <span class="tag tag-primary">U+06F7</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">w <span class="tag tag-primary">U+0077</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">Ԝ <span class="tag tag-primary">U+051C</span><br>Ꮃ <span class="tag tag-primary">U+13C3</span><br>ꓪ <span class="tag tag-primary">U+A4EA</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">x <span class="tag tag-primary">U+0078</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">х <span class="tag tag-primary">U+0445</span><br>Ⲭ <span class="tag tag-primary">U+2CAC</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">y <span class="tag tag-primary">U+0079</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ү <span class="tag tag-primary">U+04AF</span><br>υ <span class="tag tag-primary">U+03C5</span><br>Ⲩ <span class="tag tag-primary">U+2CA8</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">z <span class="tag tag-primary">U+007A</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ζ <span class="tag tag-primary">U+03B6</span><br>Ꮓ <span class="tag tag-primary">U+13C3</span><br>ꓜ <span class="tag tag-primary">U+A4DC</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">à <span class="tag tag-primary">U+00E0</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">à <span class="tag tag-primary">U+00E0</span><br>а̀ <span class="tag tag-primary">U+0430<br> U+0300</span><br>ὰ <span class="tag tag-primary">U+1F70</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">â <span class="tag tag-primary">U+00E2</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">â <span class="tag tag-primary">U+00E2</span><br>а̂ <span class="tag tag-primary">U+0430<br> U+0302</span><br>α̂ <span class="tag tag-primary">U+03B1<br> U+0302</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ä <span class="tag tag-primary">U+00E4</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ä <span class="tag tag-primary">U+00E4</span><br>ӓ <span class="tag tag-primary">U+04D3</span><br>α̈ <span class="tag tag-primary">U+03B1<br> U+0308</span><br>ӓ <span class="tag tag-primary">U+04D3</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ǎ <span class="tag tag-primary">U+01CE</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ǎ <span class="tag tag-primary">U+01CE</span><br>а̌ <span class="tag tag-primary">U+0430<br> U+030C</span><br>α̌ <span class="tag tag-primary">U+03B1<br> U+030C</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">a̋ <span class="tag tag-primary">U+0061<br> U+030B</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">а̋ <span class="tag tag-primary">U+0430<br> U+030B</span><br>α̋ <span class="tag tag-primary">U+03B1<br> U+030B</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ć <span class="tag tag-primary">U+0107</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ć <span class="tag tag-primary">U+0107</span><br>с́ <span class="tag tag-primary">U+0441<br> U+0301</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">č <span class="tag tag-primary">U+010D</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">č <span class="tag tag-primary">U+010D</span><br>с̆ <span class="tag tag-primary">U+0441<br> U+0306</span><br>с̌ <span class="tag tag-primary">U+0441<br> U+030C</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">đ <span class="tag tag-primary">U+0111</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ð <span class="tag tag-primary">U+00F0</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">d̂ <span class="tag tag-primary">U+0064<br> U+0302</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">d̑ <span class="tag tag-primary">U+0064<br> U+0311</span><br>d̂ <span class="tag tag-primary">U+0064<br> U+0302</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">è <span class="tag tag-primary">U+00E8</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">è <span class="tag tag-primary">U+00E8</span><br>ѐ <span class="tag tag-primary">U+0450</span><br>ὲ <span class="tag tag-primary">U+1F72</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ė <span class="tag tag-primary">U+0117</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ė <span class="tag tag-primary">U+0117</span><br>е̇ <span class="tag tag-primary">U+0435<br> U+0307</span><br>ε̇ <span class="tag tag-primary">U+03B5<br> U+0307</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ê <span class="tag tag-primary">U+00EA</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ê <span class="tag tag-primary">U+00EA</span><br>е̂ <span class="tag tag-primary">U+0435<br> U+0302</span><br>ε̂ <span class="tag tag-primary">U+03B5<br> U+0302</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ë <span class="tag tag-primary">U+00EB</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ë <span class="tag tag-primary">U+00EB</span><br>ё <span class="tag tag-primary">U+0451</span><br>ε̈ <span class="tag tag-primary">U+03B5<br> U+0308</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ě <span class="tag tag-primary">U+011B</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ě <span class="tag tag-primary">U+011B</span><br>е̌ <span class="tag tag-primary">U+0435<br> U+030C</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ę <span class="tag tag-primary">U+0119</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ę <span class="tag tag-primary">U+0119</span><br>е̨ <span class="tag tag-primary">U+0435<br> U+0328</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">e̊ <span class="tag tag-primary">U+0065<br> U+030A</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">eْ <span class="tag tag-primary">U+0065<br> U+0652</span><br>ⴹ̊ <span class="tag tag-primary">U+2D39<br> U+030A</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ḟ <span class="tag tag-primary">U+1E1F</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ḟ <span class="tag tag-primary">U+1E1F</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ī <span class="tag tag-primary">U+012B</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ī <span class="tag tag-primary">U+012B</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">í <span class="tag tag-primary">U+00ED</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">і́ <span class="tag tag-primary">U+0456<br> U+0301</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ì <span class="tag tag-primary">U+00EC</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">і̀ <span class="tag tag-primary">U+0456<br> U+0300</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">î <span class="tag tag-primary">U+00EE</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">і̂ <span class="tag tag-primary">U+0456<br> U+0302</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ǐ <span class="tag tag-primary">U+01D0</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">і̌ <span class="tag tag-primary">U+0456<br> U+030C</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ï <span class="tag tag-primary">U+00EF</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ї <span class="tag tag-primary">U+0457</span><br>ї <span class="tag tag-primary">U+0457</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">k̦ <span class="tag tag-primary">U+006B<br> U+0326</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ķ <span class="tag tag-primary">U+0137</span><br>к̦ <span class="tag tag-primary">U+043A<br> U+0326</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ǩ <span class="tag tag-primary">U+01E9</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ǩ <span class="tag tag-primary">U+01E9</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ḱ <span class="tag tag-primary">U+1E31</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ќ <span class="tag tag-primary">U+045C</span><br>ḱ <span class="tag tag-primary">U+1E31</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ḳ <span class="tag tag-primary">U+1E33</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ḳ <span class="tag tag-primary">U+1E33</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">l̦ <span class="tag tag-primary">U+006C<br> U+0326</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ļ <span class="tag tag-primary">U+013C</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ń <span class="tag tag-primary">U+0144</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ń <span class="tag tag-primary">U+0144</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ǹ <span class="tag tag-primary">U+01F9</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ǹ <span class="tag tag-primary">U+01F9</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ṅ <span class="tag tag-primary">U+1E45</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ṅ <span class="tag tag-primary">U+1E45</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ň <span class="tag tag-primary">U+0148</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ň <span class="tag tag-primary">U+0148</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">n̦ <span class="tag tag-primary">U+006E<br> U+0326</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ņ <span class="tag tag-primary">U+0146</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ó <span class="tag tag-primary">U+00F3</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">о́ <span class="tag tag-primary">U+043E<br> U+0301</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ò <span class="tag tag-primary">U+00F2</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">о̀ <span class="tag tag-primary">U+043E<br> U+0300</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ô <span class="tag tag-primary">U+00F4</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">о̂ <span class="tag tag-primary">U+043E<br> U+0302</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ō <span class="tag tag-primary">U+014D</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">о̄ <span class="tag tag-primary">U+043E<br> U+0304</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ő <span class="tag tag-primary">U+0151</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">о̋ <span class="tag tag-primary">U+043E<br> U+030B</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ö <span class="tag tag-primary">U+00F6</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ӧ <span class="tag tag-primary">U+04E7</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ṕ <span class="tag tag-primary">U+1E55</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ṕ <span class="tag tag-primary">U+1E55</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">s̀ <span class="tag tag-primary">U+0073<br> U+0300</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ѕ̀ <span class="tag tag-primary">U+0455<br> U+0300</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ś <span class="tag tag-primary">U+015B</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ѕ́ <span class="tag tag-primary">U+0455<br> U+0301</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ŝ <span class="tag tag-primary">U+015D</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ѕ̂ <span class="tag tag-primary">U+0455<br> U+0302</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">š <span class="tag tag-primary">U+0161</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ѕ̌ <span class="tag tag-primary">U+0455<br> U+030C</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ș <span class="tag tag-primary">U+0219</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ş <span class="tag tag-primary">U+015F</span><br>ș <span class="tag tag-primary">U+0219</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ț <span class="tag tag-primary">U+021B</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ţ <span class="tag tag-primary">U+0163</span><br>ț <span class="tag tag-primary">U+021B</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">û <span class="tag tag-primary">U+00FB</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">uٛ <span class="tag tag-primary">U+0075<br> U+065B</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">u̐ <span class="tag tag-primary">U+0075<br> U+0310</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">𖽂̐ <span class="tag tag-primary">U+16F42<br> U+0310</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ż <span class="tag tag-primary">U+017C</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ż <span class="tag tag-primary">U+017C</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ẑ <span class="tag tag-primary">U+1E91</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ẑ <span class="tag tag-primary">U+1E91</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ž <span class="tag tag-primary">U+017E</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ž <span class="tag tag-primary">U+017E</span></td>
+            </tr>
+            <tr>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ŭ <span class="tag tag-primary">U+016D</span></td>
+              <td style="border: 1.5px solid var(--bg-color) !important;">ꓴ꙼ <span class="tag tag-primary">U+A4F4<br> U+A67C</span><br>ǔ <span class="tag tag-primary">U+01D4</span></td>
+            </tr>
+            </tbody>
+          </table table-2>
+          <p class="text">For ligatures/ties used by British Library and LoC, if <span class="tag tag-primary">U+0361</span><br>(Combining Double Inverted Breve) is used, it is replaced with <span class="tag tag-primary">U+FE20</span> and <span class="tag tag-primary">U+FE21</span> (Combining Ligature Half - Left / Right). Yniversalist output only contains the latter tie compositions.</p>
+        </div>
+      </div>
+    
+    
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Planned additions</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+          <div class="notes-content">
+            <p class="text" data-note="1">Tajik</p>
+            <p class="text" data-note="1">Kyrgyz</p>
+            <p class="text" data-note="1">Uzbek</p>
+            <p class="text" data-note="1">Kazakh</p>
+            <p class="text" data-note="1">Tatar</p>
+            <p class="text" data-note="1">Ingush</p>
+            <p class="text" data-note="1">Chechen</p>
+            <p class="text" data-note="1">Buryat</p>
+            <p class="text" data-note="1">Abkhaz</p>
+            <p class="text" data-note="1">Gagauz</p>
+            <p class="text" data-note="1">Glagolitic</p>
+            <p class="text" data-note="1">Slavonic</p>
+            <p class="text" data-note="1">Ruthenian Scripts</p>
+          </div>
+      </div>
+
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Copyright and Sources</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+          <div class="notes-content">
+            <p class="text">Sources for conversion paradigms are indicated next to the respective standard in the 'Show Examples' sections.</p>
+            <p class="text-muted">Icons: <a href="https://fonts.google.com/icons">Material Icons</a></p>
+            <p class="text-muted">Fonts:
+              <a href="https://fonts.google.com/specimen/Roboto">Roboto</a>,
+              <a href="https://fonts.google.com/specimen/Roboto+Flex">Roboto Flex</a>,
+              <a href="https://fonts.google.com/specimen/Roboto+Mono">Roboto Mono</a>,
+              <a href="https://github.com/slavonic/Monomakh">Monomakh</a>
+            </p>
+            <p class="text-muted">Favicon based on: <a href="https://foundation.wikimedia.org/wiki/File:Glagolitic_djerv.svg">Glagolitic djerv.svg</a></p>            
+            <p class="text">Last Update: 01/05/2025</p>
+          </div>
+      </div>
+ 
+
+      
+    </div>
+
+    <div id="russian" class="title title-primary">Russian</div>
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Example</span>
+        <a href="https://ru.wikipedia.org/wiki/%D0%9F%D0%B0%D0%BD%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B0" class="tag tag-light">Source</a>
+        <div class="title title-tertiary">»Эй, жлоб! Где туз? Прячь юных съёмщиц в шкаф«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted-2"><span class="tag tag-highlight">DIN 1460 (2021)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Ėj, žlob! Gde tuz? Prjačʹ junych sʺëmščic v škaf«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO 9</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Èj, žlob! Gde tuz? Prâčʹ ûnyh sʺëmŝic v škaf«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BNF</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://kitcat.bnf.fr/consignes-catalogage/translitteration-du-russe-du-bielorusse-et-de-lukrainien-contemporains" class="tag tag-light">Source</a><br>»Èj, žlob! Gde tuz? Prâčʹ ûnyh sʺëmŝic v škaf«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC  / British Library</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.loc.gov/catdir/cpso/romanization/russian.pdf" class="tag tag-light">Source</a><br>»Ėĭ, zhlob! Gde tuz? Pri͡achʹ i͡unykh sʺëmshchit͡s v shkaf«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">GOST 7.79 (a)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.ifap.ru/library/gost/7792000.pdf" class="tag tag-light">Source</a><br>»Èj, žlob! Gde tuz? Prâčʹ ûnyh sʺёmŝic v škaf«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">GOST 7.79 (b)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://ifap.ru/library/gost/70342014.pdf" class="tag tag-light">Source</a><br>»Е`j, zhlob! Gde tuz? Pryach` yuny`x s``yomshhic v shkaf«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BGN/PCGN</span><a href="https://assets.publishing.service.gov.uk/media/636cd2828fa8f5357a0c652c/ROMANIZATION_OF_RUSSIAN_2022_final.pdf" class="tag tag-light">Source</a><br>»Ey, zhlob! Gde tuz? Pryach’ yunykh s"yëmshchits v shkaf«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BS 2979</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://github.com/nalgeon/iuliia/blob/master/bs_2979.json" class="tag tag-light">Source</a><br>»Éĭ, zhlob! Gde tuz? Pryachʼ yunȳkh sʺёmshchits v shkaf«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">National / ICAO (2013)</span><a href="https://www.consultant.ru/cons/cgi/online.cgi?req=doc&base=LAW&n=360580#fV7esjUsN9AGle1w1" class="tag tag-light">Source</a><br>»Ei, zhlob! Gde tuz? Priach iunykh sieemshchits v shkaf«</p>
+        </div>
+      </div>
+
+      <div id="ru1" class="title title-secondary title-underlined">Russian Transliteration Table</div>
+      <div class="table-container">
+      <table>
+        <thead>
+          <th>Cyrillic</th><th>DIN 1460</th><th>ALA LC</th><th>ISO 9</th><th>BNF</th><th>ISO/R9</th><th>BGN/PCGN</th><th>BS 2979</th><th>GOST 7.79 A</th><th>GOST 7.79 B</th><th>National</th>
+        </thead>
+        <td class="cyrillic">а</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td></tr>
+        <td class="cyrillic">б</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td></tr>
+        <td class="cyrillic">в</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td></tr>
+        <td class="cyrillic">г</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td></tr>
+        <td class="cyrillic">д</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td></tr>
+        <td class="cyrillic">е</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e/ye¹</td><td>e</td><td>e</td><td>e</td><td>e</td></tr>
+        <td class="cyrillic">ё</td><td>ë</td><td>ë</td><td>ë</td><td>ë</td><td>ë</td><td>ë/yë²</td><td>ё</td><td>yo</td><td>ё</td><td>e</td></tr>
+        <td class="cyrillic">ж</td><td>ž</td><td>zh</td><td>ž</td><td>ž</td><td>ž</td><td>zh</td><td>zh</td><td>zh</td><td>ž</td><td>zh</td></tr>
+        <td class="cyrillic">з</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td></tr>
+        <td class="cyrillic">и</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td></tr>
+        <td class="cyrillic">й</td><td>j</td><td>ĭ</td><td>j</td><td>j</td><td>j</td><td>y/у·³</td><td>ĭ</td><td>j</td><td>j</td><td>i</td></tr>
+        <td class="cyrillic">к</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td></tr>
+        <td class="cyrillic">л</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td></tr>
+        <td class="cyrillic">м</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td></tr>
+        <td class="cyrillic">н</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td></tr>
+        <td class="cyrillic">о</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td></tr>
+        <td class="cyrillic">п</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td></tr>
+        <td class="cyrillic">р</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td></tr>
+        <td class="cyrillic">с</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td></tr>
+        <td class="cyrillic">т</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t/t·s⁴</td><td>t/t-s⁵</td><td>t</td><td>t</td><td>t</td></tr>
+        <td class="cyrillic">у</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td></tr>
+        <td class="cyrillic">ф</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td></tr>
+        <td class="cyrillic">х</td><td>ch</td><td>kh</td><td>h</td><td>h</td><td>h</td><td>kh</td><td>kh</td><td>x</td><td>h</td><td>kh</td></tr>
+        <td class="cyrillic">ц</td><td>c</td><td>t͡s</td><td>c</td><td>c</td><td>c</td><td>ts</td><td>ts</td><td>c</td><td>c</td><td>ts</td></tr>
+        <td class="cyrillic">ч</td><td>č</td><td>ch</td><td>č</td><td>č</td><td>č</td><td>ch</td><td>ch</td><td>ch</td><td>č</td><td>ch</td></tr>
+        <td class="cyrillic">ш</td><td>š</td><td>sh</td><td>š</td><td>š</td><td>š</td><td>sh⁶</td><td>sh</td><td>sh</td><td>š</td><td>sh</td></tr>
+        <td class="cyrillic">щ</td><td>šč</td><td>shch</td><td>ŝ</td><td>ŝ</td><td>šč</td><td>shch</td><td>shch</td><td>shh</td><td>ŝ</td><td>shch</td></tr>
+        <td class="cyrillic">ъ</td><td>ʺ</td><td>ʺ</td><td>ʺ</td><td>ʺ</td><td>ʺ</td><td>”</td><td>ʺ</td><td>``</td><td>ʺ</td><td>ie</td></tr>
+        <td class="cyrillic">ы</td><td>y</td><td>y</td><td>y</td><td>y</td><td>y</td><td>y/у·/·у⁷</td><td>ȳ</td><td>y`</td><td>y</td><td>y</td></tr>
+        <td class="cyrillic">ь</td><td>ʹ</td><td>ʹ</td><td>ʹ</td><td>ʹ</td><td>′</td><td>’</td><td>ʼ</td><td>`</td><td>ʹ</td><td></td></tr>
+        <td class="cyrillic">э</td><td>ė</td><td>ė</td><td>è</td><td>è</td><td>e̊</td><td>e/·е⁸</td><td>é</td><td>е`</td><td>è</td><td>e</td></tr>
+        <td class="cyrillic">ю</td><td>ju</td><td>i͡u</td><td>û</td><td>û</td><td>ju</td><td>yu</td><td>yu</td><td>yu</td><td>û</td><td>iu</td></tr>
+        <td class="cyrillic">я</td><td>ja</td><td>i͡a</td><td>â</td><td>â</td><td>ja</td><td>ya</td><td>ya</td><td>ya</td><td>â</td><td>ia</td></tr>
+        <th class="between" colspan="11">Archaic Letters</th></tr>
+        <td class="cyrillic">і</td><td>ï</td><td>ī</td><td>ì</td><td>ì</td><td>ī</td><td></td><td>ī</td><td></td><td>ì</td><td></td></tr>
+        <td class="cyrillic">ѣ</td><td>ê</td><td>i͡e</td><td>ě</td><td>ĕ</td><td>ě</td><td></td><td>ê</td><td></td><td>ě</td><td></td></tr>
+        <td class="cyrillic">ѳ</td><td>f</td><td>ḟ</td><td>f̀</td><td>f̀</td><td>ḟ</td><td></td><td>ḟ</td><td></td><td>f̀</td><td></td></tr>
+        <td class="cyrillic">ѵ</td><td>ẏ</td><td>ẏ</td><td>ỳ</td><td>ỳ</td><td>ẏ</td><td></td><td>y̆</td><td></td><td>ỳ</td><td></td></tr>
+        <td class="cyrillic">ѫ</td><td></td><td></td><td></td><td>ă</td><td>.″</td><td></td><td></td><td></td><td></td><td></td></tr>
+      </table>
+      </div>
+
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Notes</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted" data-note="1">¹ At the beginning of a word, the letter <span class="tag tag-primary">e</span> is converted to <span class="tag tag-primary">ye</span>, just as when it follows the vowels <span class="tag tag-primary">a</span>, <span class="tag tag-primary">e</span>, <span class="tag tag-primary">ё</span>, <span class="tag tag-primary">и</span>, <span class="tag tag-primary">о</span>, <span class="tag tag-primary">у</span>, <span class="tag tag-primary">ы</span>, <span class="tag tag-primary">э</span>, <span class="tag tag-primary">ю</span>, and <span class="tag tag-primary">я</span>, as well as the characters <span class="tag tag-primary">й</span>, <span class="tag tag-primary">ъ</span>, and <span class="tag tag-primary">ь</span>. In all other cases, it is transliterated as <span class="tag tag-primary">e</span>.</p>
+          <p class="text text-muted" data-note="2">² An analogous rule applies to <span class="tag tag-primary">ë</span></p>
+          <p class="text text-muted" data-note="3">³ transliterates as <span class="tag tag-primary">у·</span> if it appears before <span class="tag tag-primary">а</span>, <span class="tag tag-primary">у</span>, <span class="tag tag-primary">ы</span> or <span class="tag tag-primary">э</span></p>
+          <p class="text text-muted" data-note="4">⁴ <span class="tag tag-primary">тс</span> is transliterated as <span class="tag tag-primary">t·s</span> to differentiate it from <span class="tag tag-primary">ц</span>/<span class="tag tag-primary">ts</span></p>
+          <p class="text text-muted" data-note="5">⁵ <span class="tag tag-primary">тс</span> is transliterated as <span class="tag tag-primary">t-s</span> to differentiate it from <span class="tag tag-primary">ц</span>/<span class="tag tag-primary">ts</span></p>
+          <p class="text text-muted" data-note="6">⁶ <span class="tag tag-primary">шч</span> transliterates to <span class="tag tag-primary">sh·ch</span></p>
+          <p class="text text-muted" data-note="7">⁷ transliterates as <span class="tag tag-primary">у·</span> if it appears before <span class="tag tag-primary">а</span>, <span class="tag tag-primary">у</span>, <span class="tag tag-primary">ы</span> or <span class="tag tag-primary">э</span> and as <span class="tag tag-primary">·у</span> if it follows any vowel.</p>
+          <p class="text text-muted" data-note="8">⁸ transliterates as <span class="tag tag-primary">·е</span>  after any consonant character except <span class="tag tag-primary">й</span></p>
+        </div>
+      </div>
+
+    <div id="belarusian" class="title title-primary">Belarusian</div>
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Example</span>
+        <div class="title title-tertiary">»Падчас вандроўкі па Беларусі, Шчучыншчына ўразіла мяне сваімі прыгожымі краявідамі і цёплымі, шчырымі людзьмі.«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+      <p class="text text-muted-2"><span class="tag tag-highlight">DIN 1460 (2021)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Padčas vandrouki pa Belarusi, Ščučynščyna urazila mjane svaimi pryhožymi krajavidami i cëplymi, ščyrymi ljudzʹmi.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">ISO 9</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Padčas vandroŭkì pa Belarusì, Ščučynščyna ŭrazìla mâne svaìmì prygožymì kraâvìdamì ì cëplymì, ščyrymì lûdzʹmì.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">ISO/R9</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="LINK" class="tag tag-light">Source</a><br>»Padčas vandroŭkī pa Belarusī, Ščučynščyna ŭrazīla mjane svaīmī prygožymī krajavīdamī ī cëplymī, ščyrymī ljudz′mī.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">BNF</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="LINK" class="tag tag-light">Source</a><br>»Padčas vandroŭkì pa Belarusì, Ščučynščyna ŭrazìla mâne svaìmì prygožymì kraâvìdamì ì cëplymì, ščyrymì lûdzʹmì.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC / British Library</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="LINK" class="tag tag-light">Source</a><br>»Padchas vandroŭkī pa Belarusī, Shchuchynshchyna ŭrazīla mi͡ane svaīmī pryhoz͡hymī krai͡avīdamī ī tsi͡oplymī, shchyrymī li͡udzʹmī.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">BS 2979</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="LINK" class="tag tag-light">Source</a><br>»Padchas vandrowki pa Belarusi, Shchuchȳnshchȳna wrazila myane svaimi prȳhozhȳmi krayavidami i tsëplȳmi, shchȳrȳmi lyudzʼmi.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">BGN/PCGN</span><a href="LINK" class="tag tag-light">Source</a><br>»Padchas vandrowki pa Byelarusi, Shchuchynshchyna wrazila myanye svaimi pryhozhymi krayavidami i tsyoplymi, shchyrymi lyudz’mi.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">Łacinka</span><a href="https://binim.org/index.php/transliteration/" class="tag tag-light">Source</a><br>»Padčas vandroŭki pa Biełarusi, Ščučynščyna ŭraziła mianie svajimi pryhožymi krajavidami i ciopłymi, ščyrymi łiudźmi.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">National (2023)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="LINK" class="tag tag-light">Source</a><br>»Padchas vandrowki pa Bielarusi, Shchuchynshchyna wrazila mianie svaimi prygozhymi krajavidami i cioplymi, shchyrymi liudzmi.«</p>
+        </div>
+      </div>
+        <div class="text">
+
+      <div id="by1" class="title title-secondary title-underlined">Belarusian Transliteration Table</div>
+      <div class="table-container">
+      <table>
+        <tr>
+          <th>Cyrillic</th>
+          <th>DIN 1460</th>
+          <th>ISO 9</th>
+          <th>BNF</th>
+          <th>ISO/R9</th>
+          <th>ALA LC</th>
+          <th>BGN/PCGN</th>
+          <th>BS 2979</th>
+          <th>National 2023</th>
+        </tr>
+        <td class="cyrillic">а</td><td>a</td><td>a</td><td>a</td><td></td><td>a</td><td>a</td><td>a</td><td>a</td></tr>
+        <td class="cyrillic">б</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td></tr>
+        <td class="cyrillic">в</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td></tr>
+        <td class="cyrillic">г</td><td>h</td><td>g</td><td>g</td><td>g</td><td>h</td><td>h</td><td>h</td><td>g</td></tr>
+        <td class="cyrillic">ґ</td><td></td><td></td><td>g̀</td><td></td><td></td><td></td><td></td><td></td></tr>
+        <td class="cyrillic">д</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td></tr>
+        <td class="cyrillic">е</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>ye</td><td>e</td><td>je/ie¹</td></tr>
+        <td class="cyrillic">ё</td><td>ë</td><td>ë</td><td>ë</td><td>ë</td><td>i͡o</td><td>yo</td><td>ë</td><td>jo/io²</td></tr>
+        <td class="cyrillic">ж</td><td>ž</td><td>ž</td><td>ž</td><td>ž</td><td>z͡h</td><td>zh</td><td>zh</td><td>zh</td></tr>
+        <td class="cyrillic">з</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z³</td><td>z</td><td>z</td></tr>
+        <td class="cyrillic">і</td><td>i</td><td>ì</td><td>ì</td><td>ī</td><td>ī</td><td>i</td><td>i</td><td>i</td></tr>
+        <td class="cyrillic">й</td><td>j</td><td>j</td><td>j</td><td>j</td><td>ĭ</td><td>y</td><td>ĭ</td><td>j</td></tr>
+        <td class="cyrillic">к</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k⁴</td><td>k</td><td>k</td></tr>
+        <td class="cyrillic">л</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td></tr>
+        <td class="cyrillic">м</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td></tr>
+        <td class="cyrillic">н</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td></tr>
+        <td class="cyrillic">о</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td></tr>
+        <td class="cyrillic">п</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td></tr>
+        <td class="cyrillic">р</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td></tr>
+        <td class="cyrillic">с</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s⁵</td><td>s</td><td>s</td></tr>
+        <td class="cyrillic">т</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t⁶</td><td>t⁷</td><td>t</td></tr>
+        <td class="cyrillic">у</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td></tr>
+        <td class="cyrillic">ў</td><td>u</td><td>ŭ</td><td>ŭ</td><td>ŭ</td><td>ŭ</td><td>w</td><td>w</td><td>w</td></tr>
+        <td class="cyrillic">ф</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td></tr>
+        <td class="cyrillic">х</td><td>ch</td><td>h</td><td>h</td><td>h</td><td>kh</td><td>kh</td><td>kh</td><td>h</td></tr>
+        <td class="cyrillic">ц</td><td>c</td><td>c</td><td>c</td><td>c</td><td>ts</td><td>ts⁸</td><td>ts</td><td>c</td></tr>
+        <td class="cyrillic">ч</td><td>č</td><td>č</td><td>č</td><td>č</td><td>ch</td><td>ch</td><td>ch</td><td>ch</td></tr>
+        <td class="cyrillic">ш</td><td>š</td><td>š</td><td>š</td><td>š</td><td>sh</td><td>sh</td><td>sh</td><td>sh</td></tr>
+        <td class="cyrillic">ы</td><td>y</td><td>y</td><td>y</td><td>y</td><td>y</td><td>y</td><td>ȳ</td><td>y</td></tr>
+        <td class="cyrillic">ь</td><td>ʹ</td><td>ʹ</td><td>ʹ</td><td>′</td><td>ʹ</td><td>’</td><td>ʼ</td><td></td></tr>
+        <td class="cyrillic">’</td><td>’</td><td>’</td><td>”</td><td>″</td><td></td><td>ʼ</td><td>ʺ</td><td></td></tr>
+        <td class="cyrillic">э</td><td>ė</td><td>è</td><td>è</td><td>e̊</td><td>ė</td><td>e</td><td>é</td><td>e</td></tr>
+        <td class="cyrillic">ю</td><td>ju</td><td>û</td><td>û</td><td>ju</td><td>i͡u</td><td>yu</td><td>yu</td><td>ju/iu⁹</td></tr>
+        <td class="cyrillic">я</td><td>ja</td><td>â</td><td>â</td><td>ja</td><td>i͡a</td><td>ya</td><td>ya</td><td>ja/ia¹⁰</td></tr>
+      </table>
+      </div>
+
+    <div class="notes-container">
+      <div class="notes-header">
+        <h4 class="notes-title">Notes</h4>
+        <span class="notes-chevron">+</span>
+      </div>
+      <div class="notes-content">
+        <p class="text text-muted" data-note="1">¹ <span class="tag tag-primary">е</span> is converted to <span class="tag tag-primary">je</span> word-initially and after a vowel, apostrophe (’), separating <span class="tag tag-primary">ь</span>, or <span class="tag tag-primary">ў</span>; in all other cases, <span class="tag tag-primary">ie</span> is used</p>
+        <p class="text text-muted" data-note="2">² <span class="tag tag-primary">ё</span> is converted to <span class="tag tag-primary">jo</span> word-initially and after a vowel, apostrophe (’), separating <span class="tag tag-primary">ь</span>, or <span class="tag tag-primary">ў</span>; in all other cases, <span class="tag tag-primary">io</span> is used</p>
+        <p class="text text-muted" data-note="3">³ <span class="tag tag-primary">зг</span> is converted to <span class="tag tag-primary">z·h</span> to differentiate from diagraph <span class="tag tag-primary">zh</span></p>
+        <p class="text text-muted" data-note="4">⁴ <span class="tag tag-primary">кг</span> is converted to <span class="tag tag-primary">k·h</span> to differentiate from diagraph <span class="tag tag-primary">kh</span></p>
+        <p class="text text-muted" data-note="5">⁵ <span class="tag tag-primary">сг</span> is converted to <span class="tag tag-primary">s·h</span> to differentiate from diagraph <span class="tag tag-primary">sh</span></p>
+        <p class="text text-muted" data-note="6">⁶ <span class="tag tag-primary">тс</span> is converted to <span class="tag tag-primary">t·s</span> to differentiate from diagraph <span class="tag tag-primary">ts</span></p>
+        <p class="text text-muted" data-note="7">⁷ <span class="tag tag-primary">тс</span> is converted to <span class="tag tag-primary">t-s</span> to differentiate from diagraph <span class="tag tag-primary">ts</span></p>
+        <p class="text text-muted" data-note="8">⁸ <span class="tag tag-primary">цг</span> is converted to <span class="tag tag-primary">ts·h</span> to differentiate from diagraph <span class="tag tag-primary">tsh</span></p>
+        <p class="text text-muted" data-note="9">⁹ <span class="tag tag-primary">ю</span> is converted to <span class="tag tag-primary">ju</span> word-initially and after a vowel, apostrophe ('), separating <span class="tag tag-primary">ь</span>, or <span class="tag tag-primary">ў</span>; in all other cases, <span class="tag tag-primary">iu</span> is used</p>
+        <p class="text text-muted" data-note="10">¹⁰ <span class="tag tag-primary">я</span> is converted to <span class="tag tag-primary">ja</span> word-initially and after a vowel, apostrophe ('), separating <span class="tag tag-primary">ь</span>, or <span class="tag tag-primary">ў</span>; in all other cases, <span class="tag tag-primary">ia</span> is used</p>
+      </div>
+    </div>
+
+    <div id="by2" class="title title-secondary title-underlined">Łacinka Romanisation Table</div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Cyrillic</th>
+            <th>Latin</th>
+            <th>Cyrillic</th>
+            <th>Latin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="cyrillic">а</td><td>a</td><td class="cyrillic">п</td><td>p</td></tr>
+          <tr><td class="cyrillic">б</td><td>b</td><td class="cyrillic">р</td><td>r</td></tr>
+          <tr><td class="cyrillic">в</td><td>v</td><td class="cyrillic">с</td><td>s</td></tr>
+          <tr><td class="cyrillic">г</td><td>h</td><td class="cyrillic">сь</td><td>ś</td></tr>
+          <tr><td class="cyrillic">ґ¹</td><td>g</td><td class="cyrillic">т</td><td>t</td></tr>
+          <tr><td class="cyrillic">д</td><td>d</td><td class="cyrillic">у</td><td>u</td></tr>
+          <tr><td class="cyrillic">дзь</td><td>dź</td><td class="cyrillic">ў</td><td>ŭ</td></tr>
+          <tr><td class="cyrillic">дж</td><td>dž</td><td class="cyrillic">ф</td><td>f</td></tr>
+          <tr><td class="cyrillic">ж</td><td>ž</td><td class="cyrillic">х</td><td>ch</td></tr>
+          <tr><td class="cyrillic">з</td><td>z</td><td class="cyrillic">ц</td><td>c</td></tr>
+          <tr><td class="cyrillic">зь</td><td>ź</td><td class="cyrillic">ць</td><td>ć</td></tr>
+          <tr><td class="cyrillic">і</td><td>i</td><td class="cyrillic">ч</td><td>č</td></tr>
+          <tr><td class="cyrillic">й</td><td>j</td><td class="cyrillic">ш</td><td>š</td></tr>
+          <tr><td class="cyrillic">к</td><td>k</td><td class="cyrillic">ы</td><td>y</td></tr>
+          <tr><td class="cyrillic">л</td><td>ł</td><td class="cyrillic">э</td><td>e</td></tr>
+          <tr><td class="cyrillic">ль</td><td>l</td><td class="cyrillic">ля</td><td>la</td></tr>
+          <tr><td class="cyrillic">м</td><td>m</td><td class="cyrillic">ле/лё</td><td>le/lo</td></tr>
+          <tr><td class="cyrillic">н</td><td>n</td><td class="cyrillic">лі</td><td>li</td></tr>
+          <tr><td class="cyrillic">нь</td><td>ń</td><td class="cyrillic">я</td><td>ja/ia²</td></tr>
+          <tr><td class="cyrillic">о</td><td>o</td><td class="cyrillic">е</td><td>jie/ie³</td></tr>
+          <tr><td class="cyrillic">ё</td><td>jo/io⁴</td><td class="cyrillic">ю</td><td>ju/iu⁵</td></tr>
+          <tr><td class="cyrillic">ь</td><td>—/j⁶</td><td class="cyrillic">’</td><td>’</td></tr>
+        </tbody>
+      </table>
+    </div>
+      
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Notes</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted" data-note="1">¹ Not regular part of the alphabet</p>
+          <p class="text text-muted" data-note="2">² Beginning of the Word / After vowel: <span class="tag tag-primary">ja</span><br>After consonant: <span class="tag tag-primary">ia</span></p>
+          <p class="text text-muted" data-note="3">³ Beginning of the Word / After vowel: <span class="tag tag-primary">jie</span><br>After consonant: <span class="tag tag-primary">ie</span></p>
+          <p class="text text-muted" data-note="4">⁴ Beginning of the Word / After vowel: <span class="tag tag-primary">jo</span><br>After consonant: <span class="tag tag-primary">io</span></p>
+          <p class="text text-muted" data-note="5">⁵ Beginning of the Word / After vowel: <span class="tag tag-primary">ju</span><br>After consonant: <span class="tag tag-primary">iu</span></p>
+          <p class="text text-muted" data-note="6">⁶ Omitted unless before vowels</p>
+        </div>
+      </div>
+
+
+    <div id="ukrainian" class="title title-primary">Ukrainian</div> /*issue: й is removed for dstu*/
+
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Example</span>
+        <div class="title title-tertiary">»Пес Патрон щодня бігає між будинками, їсть ласощі і радісно гавкає, коли його гладиш за вухом.«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted-2"><span class="tag tag-highlight">DIN 1460</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Pes Patron ščodnja bihaje miž budynkamy, їstʹ lasošči i radisno havkaje, koly joho hladyš za vuchom.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO 9 / BNF</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Pes Patron ŝodnâ bìgaê mìž budinkami, ïstʹ lasoŝì ì radìsno gavkaê, koli jogo gladiš za vuhom.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO/R9</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://en.wikipedia.org/wiki/ISO_9#ISO/R_9" class="tag tag-light">Source</a><br>»Pes Patron ščodnja bīgaje mīž budinkami, ïst′ lasoščī ī radīsno gavkaje, koli jogo gladiš za vuhom.«</p>  
+          <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC / British Library</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.loc.gov/catdir/cpso/romanization/ukrainia.pdf" class="tag tag-light">Source</a><br>»Pes Patron shchodni͡a bihai͡e miz͡h budynkamy, ïstʹ lasoshchi i radisno havkai͡e, koly ĭoho hladysh za vukhom.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BS 2979</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://en.wiktionary.org/wiki/Appendix:Ukrainian_alphabet" class="tag tag-light">Source</a><br>»Pes Patron shchodnya bigaye mizh budȳnkamȳ, yistʼ lasoshchi i radisno gavkaye, kolȳ ĭogo gladȳsh za vukhom.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BGN/PCGN 2019 / RM-P55 2010</span><a href="https://zakon.rada.gov.ua/laws/show/55-2010-%D0%BF#Text" class="tag tag-light">Source</a><br>»Pes Patron shchodnia bіhaie mіzh budynkamy, yist lasoshchі і radіsno havkaie, koly yoho hladysh za vukhom.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">DSTU 9112:2021 (A)</span><a href="https://ia801400.us.archive.org/31/items/dstu-9112-2021/DSTU%209112_2021_text.pdf" class="tag tag-light">Source</a><br>»Pes Patron ŝodnja biğaje miž budynkamy, jistj lasoŝi i radisno ğavkaje, koly joğo ğladyš za vuxom.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">DSTU 9112:2021 (B)</span><a href="https://ia801400.us.archive.org/31/items/dstu-9112-2021/DSTU%209112_2021_text.pdf" class="tag tag-light">Source</a><br>»Pes Patron shchodnja bihaje mizh budynkamy, jistj lasoshchi i radisno havkaje, koly joho hladysh za vukhom.«</p>
+        </div>
+      </div>
+
+        <div class="text">
+
+
+      <div id="ua1" class="title title-secondary title-underlined">Ukrainian Transliteration Table</div>
+      <div class="table-container">
+      <table>
+        <tr>
+          <th>Cyrillic</th>
+          <th>DIN 1460</th>
+          <th>ALA LC</th>
+          <th>ISO 9</th>
+          <th>BNF</th>
+          <th>ISO/R9</th>
+          <th>BGN/PCGN 2019/RM-P55 2010</th>
+          <th>BS 2979</th>
+        </tr>
+        <td class="cyrillic">а</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td></tr>
+        <td class="cyrillic">б</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td></tr>
+        <td class="cyrillic">в</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td></tr>
+        <td class="cyrillic">г</td><td>h</td><td>h</td><td>g</td><td>g</td><td>g</td><td>h</td><td>g</td></tr>
+        <td class="cyrillic">ґ</td><td>g</td><td>g</td><td>g̀</td><td>g̀</td><td>g</td><td>g</td><td>g</td></tr>
+        <td class="cyrillic">д</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td></tr>
+        <td class="cyrillic">е</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td></tr>
+        <td class="cyrillic">є</td><td>je</td><td>i͡e</td><td>ê</td><td>ê</td><td>je</td><td>ye/ie¹</td><td>ye</td></tr>
+        <td class="cyrillic">ж</td><td>ž</td><td>z͡h</td><td>ž</td><td>ž</td><td>ž</td><td>zh</td><td>zh</td></tr>
+        <td class="cyrillic">з</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td></tr>
+        <td class="cyrillic">и</td><td>y</td><td>y</td><td>i</td><td>i</td><td>i</td><td>y</td><td>ȳ</td></tr>
+        <td class="cyrillic">і</td><td>i</td><td>i</td><td>ì</td><td>ì</td><td>ī</td><td>i</td><td>i</td></tr>
+        <td class="cyrillic">ї</td><td>ї</td><td>ï</td><td>ï</td><td>ï</td><td>ï</td><td>yi/i¹</td><td>yi</td></tr>
+        <td class="cyrillic">й</td><td>j</td><td>ĭ</td><td>j</td><td>j</td><td>j</td><td>y/i¹</td><td>ĭ</td></tr>
+        <td class="cyrillic">к</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td></tr>
+        <td class="cyrillic">л</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td></tr>
+        <td class="cyrillic">м</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td></tr>
+        <td class="cyrillic">н</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td></tr>
+        <td class="cyrillic">о</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td></tr>
+        <td class="cyrillic">п</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td></tr>
+        <td class="cyrillic">р</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td></tr>
+        <td class="cyrillic">с</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td></tr>
+        <td class="cyrillic">т</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td></tr>
+        <td class="cyrillic">у</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td></tr>
+        <td class="cyrillic">ф</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td></tr>
+        <td class="cyrillic">х</td><td>ch</td><td>kh</td><td>h</td><td>h</td><td>h</td><td>kh</td><td>kh</td></tr>
+        <td class="cyrillic">ц</td><td>c</td><td>t͡s</td><td>c</td><td>c</td><td>c</td><td>ts</td><td>ts</td></tr>
+        <td class="cyrillic">ч</td><td>č</td><td>ch</td><td>č</td><td>č</td><td>č</td><td>ch</td><td>ch</td></tr>
+        <td class="cyrillic">ш</td><td>š</td><td>sh</td><td>š</td><td>š</td><td>š</td><td>sh</td><td>sh</td></tr>
+        <td class="cyrillic">щ</td><td>šč</td><td>shch</td><td>ŝ</td><td>ŝ</td><td>šč</td><td>shch</td><td>shch</td></tr>
+        <td class="cyrillic">ю</td><td>ju</td><td>i͡u</td><td>û</td><td>û</td><td>ju</td><td>yu/iu¹</td><td>yu</td></tr>
+        <td class="cyrillic">я</td><td>ja</td><td>i͡a</td><td>â</td><td>â</td><td>ja</td><td>ya/ia¹</td><td>ya</td></tr>
+        <td class="cyrillic">ь</td><td>ʹ</td><td>ʹ</td><td>ʹ</td><td>ʹ</td><td>′</td><td>-</td><td>ʼ</td></tr>
+        <td class="cyrillic">'</td><td>ʼ</td><td>'</td><td>’</td><td>’</td><td>″</td><td>-</td><td>-</td></tr>
+        <td class="cyrillic">ъ</td><td></td><td></td><td></td><td></td><td>ʺ</td><td></td><td></td></tr>
+        <td class="cyrillic">ы</td><td></td><td></td><td></td><td></td><td>y</td><td></td><td></td></tr>
+        <td class="cyrillic">э</td><td></td><td></td><td></td><td></td><td>e̊</td><td></td><td></td></tr>
+        <td class="cyrillic">ѣ</td><td></td><td></td><td></td><td></td><td>ě</td><td></td><td></td></tr>
+      </table>
+      </div>
+
+    <div class="notes-container">
+      <div class="notes-header">
+        <h4 class="notes-title">Notes</h4>
+        <span class="notes-chevron">+</span>
+      </div>
+      <div class="notes-content">
+        <p class="text text-muted" data-note="1">¹ position-dependent conversion: <span class="tag tag-primary">є</span> → <span class="tag tag-primary">ye/ie</span>, <span class="tag tag-primary">и</span> → <span class="tag tag-primary">yi/y</span>, <span class="tag tag-primary">і</span> → <span class="tag tag-primary">y/i</span>, <span class="tag tag-primary">ю</span> → <span class="tag tag-primary">yu/iu</span>, <span class="tag tag-primary">я</span> → <span class="tag tag-primary">ya/ia</span> (word-beginning/elsewhere). Letters after apostrophes are treated as mid-word.</p>
+      </div>
+    </div>
+    
+<div id="ua2" class="title title-secondary title-underlined">DSTU 9112:2021 A/B:</div>
+<div class="table-container">
+<table>
+  <thead>
+    <tr>
+      <th>Cyrillic</th>
+      <th>System A</th>
+      <th>System B</th>
+      <th>Cyrillic</th>
+      <th>System A</th>
+      <th>System B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="cyrillic">а</td><td>a</td><td>a</td>
+      <td class="cyrillic">є'</td><td>jé</td><td>je'</td></tr>
+    <tr><td class="cyrillic">б</td><td>b¹</td><td>b¹</td>
+      <td class="cyrillic">є</td><td>è</td><td>ew</td></tr>
+    <tr><td class="cyrillic">в</td><td>v²</td><td>v²</td>
+      <td class="cyrillic">ë</td><td>ō</td><td>jow</td></tr>
+    <tr><td class="cyrillic">г</td><td>ğ³</td><td>gh³</td>
+      <td class="cyrillic">'</td><td>'</td><td>'</td></tr>
+    <tr><td class="cyrillic">ґ</td><td>g⁴</td><td>g⁴</td>
+      <td class="cyrillic">я</td><td>ja</td><td>ja</td></tr>
+    <tr><td class="cyrillic">д</td><td>d⁵</td><td>d⁵</td>
+      <td class="cyrillic">ю</td><td>ju</td><td>ju</td></tr>
+    <tr><td class="cyrillic">е</td><td>e</td><td>e</td>
+      <td class="cyrillic">ь</td><td>ĵ²⁴</td><td>hj²⁴</td></tr>
+    <tr><td class="cyrillic">є</td><td>je</td><td>je</td>
+      <td class="cyrillic">ь</td><td>j'²³</td><td>j'²³</td></tr>
+    <tr><td class="cyrillic">ж</td><td>ž⁶</td><td>zh⁶</td>
+      <td class="cyrillic">ь</td><td>ʹ</td><td>j</td></tr>
+    <tr><td class="cyrillic">з</td><td>z⁷</td><td>z⁷</td>
+      <td class="cyrillic">щ</td><td>Ŝ²²</td><td>shch²²</td></tr>
+    <tr><td class="cyrillic">и</td><td>y</td><td>y</td>
+      <td class="cyrillic">ш</td><td>š²¹</td><td>sh²¹</td></tr>
+    <tr><td class="cyrillic">і</td><td>i</td><td>i</td>
+      <td class="cyrillic">ч</td><td>č²⁰</td><td>ch²⁰</td></tr>
+    <tr><td class="cyrillic">ї</td><td>ї</td><td>ji</td>
+      <td class="cyrillic">ц</td><td>c¹⁹</td><td>ts¹⁹</td></tr>
+    <tr><td class="cyrillic">й</td><td>j</td><td>j</td>
+      <td class="cyrillic">х</td><td>x¹⁸</td><td>kh¹⁸</td></tr>
+    <tr><td class="cyrillic">й</td><td>j'⁸</td><td>j'⁸</td>
+      <td class="cyrillic">ф</td><td>f¹⁷</td><td>f¹⁷</td></tr>
+    <tr><td class="cyrillic">к</td><td>k⁹</td><td>k⁹</td>
+      <td class="cyrillic">у</td><td>u</td><td>u</td></tr>
+    <tr><td class="cyrillic">л</td><td>l¹⁰</td><td>l¹⁰</td>
+      <td class="cyrillic">т</td><td>t¹⁶</td><td>t¹⁶</td></tr>
+    <tr><td class="cyrillic">м</td><td>m¹¹</td><td>m¹¹</td>
+      <td class="cyrillic">с</td><td>s¹⁵</td><td>s¹⁵</td></tr>
+    <tr><td class="cyrillic">н</td><td>n¹²</td><td>n¹²</td>
+      <td class="cyrillic">р</td><td>r¹⁴</td><td>r¹⁴</td></tr>
+    <tr><td class="cyrillic">о</td><td>o</td><td>o</td>
+      <td class="cyrillic">п</td><td>p¹³</td><td>p¹³</td></tr>
+    <tr><td class="between" colspan="6">Archaic Letters</th></tr>
+  <tbody>
+    <tr><td class="cyrillic">ў</td><td>ŭ</td><td>uh</td>
+      <td class="cyrillic">j</td><td>ǐ</td><td>jh</td></tr>
+    <tr><td class="cyrillic">ȣ</td><td>ȣ</td><td>uw</td>
+      <td class="cyrillic">g</td><td>ġ²⁹</td><td>gw²⁹</td></tr>
+    <tr><td class="cyrillic">ȣ'</td><td>ȣ'</td><td>uw'</td>
+      <td class="cyrillic">ѵ</td><td>ỳ</td><td>yh</td></tr>
+    <tr><td class="cyrillic">џ</td><td>dž²⁵</td><td>dh²⁵</td>
+      <td class="cyrillic">ѳ</td><td>ḟ²⁸</td><td>fh²⁸</td></tr>
+    <tr><td class="cyrillic">ъ</td><td>ǒ</td><td>oh</td>
+      <td class="cyrillic">ѱ</td><td>ϸ²⁷</td><td>ph²⁷</td></tr>
+    <tr><td class="cyrillic">ы</td><td>y</td><td>yw</td>
+      <td class="cyrillic">ѯ</td><td>ḱ²⁶</td><td>xh²⁶</td></tr>
+    <tr><td class="cyrillic">ѣ</td><td>ė</td><td>ieh</td>
+      <td class="cyrillic">ѧ</td><td>ä</td><td>jaw</td></tr>
+    <tr><td class="cyrillic">э</td><td>ē</td><td>ehw</td>
+      <td class="cyrillic">ѫ</td><td>ü</td><td>juw</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="notes-container">
+  <div class="notes-header">
+    <h4 class="notes-title">Notes</h4>
+    <span class="notes-chevron">+</span>
+  </div>
+  <div class="notes-content">
+    <p class="text text-muted" data-note="1">¹ <span class="tag tag-primary">b</span>/<span class="tag tag-primary">b'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="2">² <span class="tag tag-primary">v</span>/<span class="tag tag-primary">v'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="3">³ <span class="tag tag-primary">ğ'</span>/<span class="tag tag-primary">gh'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="4">⁴ <span class="tag tag-primary">g'</span>/<span class="tag tag-primary">g'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="5">⁵ <span class="tag tag-primary">d'</span>/<span class="tag tag-primary">d'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="6">⁶ <span class="tag tag-primary">ž'</span>/<span class="tag tag-primary">zh'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="7">⁷ <span class="tag tag-primary">z'</span>/<span class="tag tag-primary">z'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="8">⁸ Before <span class="tag tag-primary">а</span> <span class="tag tag-primary">е</span> <span class="tag tag-primary">у</span> <span class="tag tag-primary">і</span> <span class="tag tag-primary">ȣ</span></p>
+    <p class="text text-muted" data-note="9">⁹ <span class="tag tag-primary">k'</span>/<span class="tag tag-primary">k'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="10">¹⁰ <span class="tag tag-primary">l'</span>/<span class="tag tag-primary">l'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="11">¹¹ <span class="tag tag-primary">m'</span>/<span class="tag tag-primary">m'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="12">¹² <span class="tag tag-primary">n'</span>/<span class="tag tag-primary">n'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="13">¹³ <span class="tag tag-primary">p'</span>/<span class="tag tag-primary">p'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="14">¹⁴ <span class="tag tag-primary">r'</span>/<span class="tag tag-primary">r'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="15">¹⁵ <span class="tag tag-primary">s'</span>/<span class="tag tag-primary">s'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="16">¹⁶ <span class="tag tag-primary">t'</span>/<span class="tag tag-primary">t'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="17">¹⁷ <span class="tag tag-primary">f'</span>/<span class="tag tag-primary">f'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="18">¹⁸ <span class="tag tag-primary">x'</span>/<span class="tag tag-primary">kh'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="19">¹⁹ <span class="tag tag-primary">c</span>/<span class="tag tag-primary">ts'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="20">²⁰ <span class="tag tag-primary">č'</span>/<span class="tag tag-primary">ch'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="21">²¹ <span class="tag tag-primary">š'</span>/<span class="tag tag-primary">sh'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="22">²² <span class="tag tag-primary">Ŝ'</span>/<span class="tag tag-primary">shch'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="23">²³ Before <span class="tag tag-primary">а</span> <span class="tag tag-primary">е</span> <span class="tag tag-primary">у</span> <span class="tag tag-primary">і</span> <span class="tag tag-primary">ȣ</span></p>
+    <p class="text text-muted" data-note="24">²⁴ In isolated position</p>
+    <p class="text text-muted" data-note="25">²⁵ <span class="tag tag-primary">dž'</span>/<span class="tag tag-primary">dh'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="26">²⁶ <span class="tag tag-primary">ḱ'</span>/<span class="tag tag-primary">xh'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="27">²⁷ <span class="tag tag-primary">ϸ'</span>/<span class="tag tag-primary">ph'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="28">²⁸ <span class="tag tag-primary">ḟ'</span>/<span class="tag tag-primary">fh'</span> before <span class="tag tag-primary">й</span></p>
+    <p class="text text-muted" data-note="29">²⁹ <span class="tag tag-primary">ġ'</span>/<span class="tag tag-primary">gw'</span> before <span class="tag tag-primary">й</span></p>
+  </div>
+</div>
+
+<div id="ua4" class="title title-secondary title-underlined">Ukrainian Transcription Table</div>
+<div class="table-container">
+<table>
+  <thead>
+    <tr>
+      <th>Cyrillic</th>
+      <th>Duden</th>
+      <th>Bordas</th>
+      <th>ICAO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="cyrillic">а</td><td>a</td><td>a</td><td>a</td></tr>
+    <tr><td class="cyrillic">б</td><td>b</td><td>b</td><td>b</td></tr>
+    <tr><td class="cyrillic">в</td><td>w</td><td>v</td><td>v</td></tr>
+    <tr><td class="cyrillic">г</td><td>h</td><td>h</td><td>g</td></tr>
+    <tr><td class="cyrillic">ґ</td><td>g</td><td>g</td><td>g</td></tr>
+    <tr><td class="cyrillic">д</td><td>d</td><td>d</td><td>d</td></tr>
+    <tr><td class="cyrillic">е</td><td>e</td><td>e</td><td>e</td></tr>
+    <tr><td class="cyrillic">є</td><td>je</td><td>ie</td><td>ie</td></tr>
+    <tr><td class="cyrillic">ж</td><td>sch</td><td>j</td><td>zh</td></tr>
+    <tr><td class="cyrillic">з</td><td>s</td><td>z</td><td>z</td></tr>
+    <tr><td class="cyrillic">и</td><td>y</td><td>y</td><td>y</td></tr>
+    <tr><td class="cyrillic">і</td><td>i</td><td>i</td><td>i</td></tr>
+    <tr><td class="cyrillic">ї</td><td>ji</td><td>ї</td><td>i</td></tr>
+    <tr><td class="cyrillic">й</td><td>j</td><td>i</td><td>i</td></tr>
+    <tr><td class="cyrillic">к</td><td>k</td><td>k</td><td>k</td></tr>
+    <tr><td class="cyrillic">л</td><td>l</td><td>l</td><td>l</td></tr>
+    <tr><td class="cyrillic">м</td><td>m</td><td>m</td><td>m</td></tr>
+    <tr><td class="cyrillic">н</td><td>n</td><td>n</td><td>n</td></tr>
+    <tr><td class="cyrillic">о</td><td>o</td><td>o</td><td>o</td></tr>
+    <tr><td class="cyrillic">п</td><td>p</td><td>p</td><td>p</td></tr>
+    <tr><td class="cyrillic">р</td><td>r</td><td>r</td><td>r</td></tr>
+    <tr><td class="cyrillic">с</td><td>s</td><td>s</td><td>s</td></tr>
+    <tr><td class="cyrillic">т</td><td>t</td><td>t</td><td>t</td></tr>
+    <tr><td class="cyrillic">у</td><td>u</td><td>ou</td><td>u</td></tr>
+    <tr><td class="cyrillic">ф</td><td>f</td><td>f</td><td>f</td></tr>
+    <tr><td class="cyrillic">х</td><td>ch</td><td>kh</td><td>kh</td></tr>
+    <tr><td class="cyrillic">ц</td><td>z</td><td>ts</td><td>ts</td></tr>
+    <tr><td class="cyrillic">ч</td><td>tsch</td><td>tch</td><td>ch</td></tr>
+    <tr><td class="cyrillic">ш</td><td>sch</td><td>ch</td><td>sh</td></tr>
+    <tr><td class="cyrillic">щ</td><td>schtsch</td><td>chtch</td><td>shch</td></tr>
+    <tr><td class="cyrillic">ь</td><td></td><td></td><td></td></tr>
+    <tr><td class="cyrillic">ю</td><td>ju</td><td>iou</td><td>iu</td></tr>
+    <tr><td class="cyrillic">я</td><td>ja</td><td>ia</td><td>ia</td></tr>
+    <tr><td class="cyrillic">’</td><td></td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+
+
+    <div id="bcms" class="title title-primary">Bosnian-Croatian-Montenegrin-Serbian (BCMS)</div>
+    
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Example (Serbian)</span>
+        <span class="tag tag-muted">Machine Generated</span>
+        <div class="title title-tertiary">»Фијуче ветар у шибљу, пољем се ковитла дим, и чежњиво хуји глас ђачких добошара.«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted-2"><span class="tag tag-highlight">Latinica</span><span class="tag tag-highlight">ALA LC</span><span class="tag tag-highlight">DIN 1460</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Fijuče vetar u šiblju, poljem se kovitla dim, i čežnjivo huji glas đačkih dobošara.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO 9</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Fiǰuče vetar u šibl̂u, pol̂em se kovitla dim, i čežn̂ivo huǰi glas đačkih dobošara.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO/R9</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://en.wikipedia.org/wiki/ISO_9#ISO/R_9" class="tag tag-light">Source</a><br>»Fijuče vetar u šiblju, poljem se kovitla dim, i čežnjivo huji glas đačkih dobošara.«</p>
+          <p class="text text-muted">For Montenegrin use <span class="tag tag-highlight">Latinica</span></p>        </div>
+      </div>
+
+    <div id="mk1" class="title title-secondary title-underlined">BCMS Transliteration Table</div>
+    <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>Cyrillic</th>
+        <th>Latinica</th>
+        <th>ISO 9</th>
+        <th>ISO/R9</th>
+      </tr>
+    </thead>
+    <tbody>
+      <td class="cyrillic">а</td><td>a</td><td>a</td><td>a</td></tr>
+      <td class="cyrillic">б</td><td>b</td><td>b</td><td>b</td></tr>
+      <td class="cyrillic">в</td><td>v</td><td>v</td><td>v</td></tr>
+      <td class="cyrillic">г</td><td>g</td><td>g</td><td>g</td></tr>
+      <td class="cyrillic">д</td><td>d</td><td>d</td><td>d</td></tr>
+      <td class="cyrillic">ђ</td><td>đ</td><td>đ</td><td>đ</td></tr>
+      <td class="cyrillic">е</td><td>e</td><td>e</td><td>e</td></tr>
+      <td class="cyrillic">ж</td><td>ž</td><td>ž</td><td>ž</td></tr>
+      <td class="cyrillic">з</td><td>z</td><td>z</td><td>z</td></tr>
+      <td class="cyrillic">з́  ¹</td><td>ź</td><td></td><td></td></tr>
+      <td class="cyrillic">и</td><td>i</td><td>i</td><td>i</td></tr>
+      <td class="cyrillic">ј</td><td>j</td><td>ǰ</td><td>j</td></tr>
+      <td class="cyrillic">к</td><td>k</td><td>k</td><td>k</td></tr>
+      <td class="cyrillic">л</td><td>l</td><td>l</td><td>l</td></tr>
+      <td class="cyrillic">љ</td><td>lj</td><td>l̂</td><td>lj</td></tr>
+      <td class="cyrillic">м</td><td>m</td><td>m</td><td>m</td></tr>
+      <td class="cyrillic">н</td><td>n</td><td>n</td><td>n</td></tr>
+      <td class="cyrillic">њ</td><td>nj</td><td>n̂</td><td>nj</td></tr>
+      <td class="cyrillic">о</td><td>o</td><td>o</td><td>o</td></tr>
+      <td class="cyrillic">п</td><td>p</td><td>p</td><td>p</td></tr>
+      <td class="cyrillic">р</td><td>r</td><td>r</td><td>r</td></tr>
+      <td class="cyrillic">с</td><td>s</td><td>s</td><td>s</td></tr>
+      <td class="cyrillic">с́  ¹</td><td>ś</td><td></td><td></td></tr>
+      <td class="cyrillic">т</td><td>t</td><td>t</td><td>t</td></tr>
+      <td class="cyrillic">ћ</td><td>ć</td><td>ć</td><td>ć</td></tr>
+      <td class="cyrillic">у</td><td>u</td><td>u</td><td>u</td></tr>
+      <td class="cyrillic">ф</td><td>f</td><td>f</td><td>f</td></tr>
+      <td class="cyrillic">х</td><td>h</td><td>h</td><td>h</td></tr>
+      <td class="cyrillic">ц</td><td>c</td><td>c</td><td>c</td></tr>
+      <td class="cyrillic">ч</td><td>č</td><td>č</td><td>č</td></tr>
+      <td class="cyrillic">џ</td><td>dž</td><td>d̂</td><td>dž</td></tr>
+      <td class="cyrillic">ш</td><td>š</td><td>š</td><td>š</td></tr>
+    </tbody>
+    </table>
+    </div>
+     
+    <div class="notes-container">
+      <div class="notes-header">
+        <h4 class="notes-title">Notes</h4>
+        <span class="notes-chevron">+</span>
+      </div>
+      <div class="notes-content">
+        <p class="text text-muted" data-note="1">¹ Only present in Montenegrin Cyrillic. Officially included only in  DIN 1460:1 (2021) and the official Montengrin Latin Alphabet.</p>
+      </div>
+    </div>
+
+    <div id="macedonian" class="title title-primary">Macedonian</div>
+
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Example</span>
+        <a href="https://clagnut.com/blog/2380#Macedonian" class="tag tag-light">Source</a>
+        <div class="title title-tertiary">»Мојот дружељубив коњ со тих галоп фаќа брз џиновски глушец по туѓо ѕитче.«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted-2"><span class="tag tag-highlight">DIN 1460</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Ljubezniot džudžest konj ḱe fati šuma i dzidče vo grad Ceǵep za mojata Žaklina.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC / British Library</span><a href="https://www.loc.gov/catdir/cpso/romanization/macedonian.pdf" class="tag tag-light">Source</a><br>»Ljubezniot d︠ž︡ud︠ž︡est konj ḱe fati šuma i d︠z︡idče vo grad Ceǵep za moiata Žaklina.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO 9 (1995) / BNF</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://kitcat.bnf.fr/consignes-catalogage/translitteration-du-bulgare-et-du-macedonien-contemporains" class="tag tag-light">Source</a><br>»L̂ubezniot d̂ud̂est kon̂ ḱe fati šuma i ẑidče vo grad Ceǵep za moǰata Žaklina.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BGN/PCGN (new, after 2013)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://assets.publishing.service.gov.uk/media/6573028d33b7f2000db720c3/Romanization_of_Macedonian_Cyrillic.pdf" class="tag tag-light">Source</a><br>»Ljubezniot džudžest konj ḱe fati šuma i dzidče vo grad Ceǵep za mojata Žaklina.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BGN/PCGN (old, before 2013)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://en.wikipedia.org/wiki/Romanization_of_Macedonian" class="tag tag-light">Source</a><br>»Ljubezniot džudžest konj ke fati šuma i dzidče vo grad Tsegep za mojata Žaklina.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO/R9 (1968)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://en.wikipedia.org/wiki/Romanization_of_Macedonian" class="tag tag-light">Source</a><br>»Ljubezniot dzhudzhest konj ke fati šuma i dzidče vo grad Cegep za mojata Zhaklina.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">MJMS/SSO</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.mjms.mk/MJMS_Transliteration.htm" class="tag tag-light">Source</a><br>»Ljubezniot dzhudzhest konj kje fati shuma i dzidche vo grad Cegjep za mojata Zhaklina.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">Latinica</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://en.wikipedia.org/wiki/Romanization_of_Macedonian#ISO_9_system" class="tag tag-light">Source</a><br>»Ljubezniot džudžest konj će fati šuma i dzidče vo grad Ceđep za mojata Žaklina.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">National Academy (1970)</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://en.wikipedia.org/wiki/Romanization_of_Macedonian#ISO_9_system" class="tag tag-light">Source</a><br>»Ljubezniot džudžest konj ḱe fati šuma i dzidče vo grad Ceǵep za mojata Žaklina.«</p>        </div>
+      </div>
+
+    <div id="mk1" class="title title-secondary title-underlined">Macedonian Transliteration Table</div>
+    <div class="table-container">
+    <table>
+    <thead>
+    <tr>
+      <th>Cyrillic</th>
+      <th>DIN 1460</th>
+      <th>ISO 9 (1995)</th>
+      <th>ISO 9 (1968)</th>
+      <th>ALA LC</th>
+      <th>British Library</th>
+      <th>National Academy (1970)</th>
+      <th>BGN/PCGN (old)</th>
+      <th>BGN/PCGN (new)</th>
+      <th>BNF</th>
+      <th>MJMS</th>
+      <th>Gajeva Latinica</th>
+    </tr>
+  </thead>
+  <tbody>
+    <td class="cyrillic">а</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td></tr>
+    <td class="cyrillic">б</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td></tr>
+    <td class="cyrillic">в</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td></tr>
+    <td class="cyrillic">г</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td></tr>
+    <td class="cyrillic">д</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td></tr>
+    <td class="cyrillic">ѓ</td><td>ǵ</td><td>ǵ</td><td>g</td><td>ǵ</td><td>ǵ</td><td>ǵ</td><td>g</td><td>ǵ</td><td>ǵ</td><td>gj</td><td>đ</td></tr>
+    <td class="cyrillic">е</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td></tr>
+    <td class="cyrillic">ж</td><td>ž</td><td>ž</td><td>zh</td><td>ž</td><td>ž</td><td>ž</td><td>ž</td><td>ž</td><td>ž</td><td>zh</td><td>ž</td></tr>
+    <td class="cyrillic">з</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td></tr>
+    <td class="cyrillic">ѕ</td><td>dz</td><td>ẑ</td><td>dz</td><td>d︠z︡</td><td>d︠z︡</td><td>dz</td><td>dz</td><td>dz</td><td>ẑ</td><td>dz</td><td>dz</td></tr>
+    <td class="cyrillic">и</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td></tr>
+    <td class="cyrillic">ј</td><td>j</td><td>ǰ</td><td>j</td><td>i</td><td>i</td><td>j</td><td>j</td><td>j</td><td>ǰ</td><td>j</td><td>j</td></tr>
+    <td class="cyrillic">к</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td></tr>
+    <td class="cyrillic">л</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td></tr>
+    <td class="cyrillic">љ</td><td>lj</td><td>l̂</td><td>lj</td><td>lj</td><td>lj</td><td>lj</td><td>lj</td><td>lj</td><td>l̂</td><td>lj</td><td>lj</td></tr>
+    <td class="cyrillic">м</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td></tr>
+    <td class="cyrillic">н</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td></tr>
+    <td class="cyrillic">њ</td><td>nj</td><td>n̂</td><td>nj</td><td>nj</td><td>nj</td><td>nj</td><td>nj</td><td>nj</td><td>n̂</td><td>nj</td><td>nj</td></tr>
+    <td class="cyrillic">о</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td></tr>
+    <td class="cyrillic">п</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td></tr>
+    <td class="cyrillic">р</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td></tr>
+    <td class="cyrillic">с</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td></tr>
+    <td class="cyrillic">т</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td></tr>
+    <td class="cyrillic">ќ</td><td>ḱ</td><td>ḱ</td><td>k</td><td>ḱ</td><td>ḱ</td><td>ḱ</td><td>k</td><td>ḱ</td><td>ḱ</td><td>kj</td><td>ć</td></tr>
+    <td class="cyrillic">у</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td></tr>
+    <td class="cyrillic">ф</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td></tr>
+    <td class="cyrillic">х</td><td>h</td><td>h</td><td>kh</td><td>kh</td><td>kh</td><td>h</td><td>kh</td><td>h</td><td>h</td><td>h</td><td>h</td></tr>
+    <td class="cyrillic">ц</td><td>c</td><td>c</td><td>c</td><td>c</td><td>c</td><td>c</td><td>ts</td><td>c</td><td>c</td><td>c</td><td>c</td></tr>
+    <td class="cyrillic">ч</td><td>č</td><td>č</td><td>č</td><td>č</td><td>č</td><td>č</td><td>č</td><td>č</td><td>č</td><td>ch</td><td>č</td></tr>
+    <td class="cyrillic">џ</td><td>dž</td><td>d̂</td><td>dzh</td><td>d︠ž︡</td><td>d︠ž︡</td><td>dž</td><td>dž</td><td>dž</td><td>d̂</td><td>dzh</td><td>dž</td></tr>
+    <td class="cyrillic">ш</td><td>š</td><td>š</td><td>š</td><td>š</td><td>š</td><td>š</td><td>š</td><td>š</td><td>š</td><td>sh</td><td>š</td></tr>
+  </tbody>
+</table>
+</div>
+    
+
+    <div id="bulgarian" class="title title-primary">Bulgarian</div>    
+
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Example</span>
+        <a href="https://bg.wikipedia.org/wiki/%D0%9F%D0%B0%D0%BD%D0%B3%D1%80%D0%B0%D0%BC%D0%B0" class="tag tag-light">Source</a>
+        <div class="title title-tertiary">»Ах, чудна българска земьо, полюшвай цъфтящи жита«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted-2"><span class="tag tag-highlight">DIN 1460</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Ach, čudna bălgarska zemʹo, poljušvaj căftjašti žita«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO 9</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>»Ah, čudna bʺlgarska zemʹo, polûšvai cʺftâŝi žita«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BNF</span><a href="https://kitcat.bnf.fr/consignes-catalogage/translitteration-du-bulgare-et-du-macedonien-contemporains" class="tag tag-light">Source</a><br>»Ah, čudna bʺlgarska zemʹo, polûšvaj cʺftâŝi žita«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC / British Library</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.loc.gov/catdir/cpso/romanization/bulgarian.pdf" class="tag tag-light">Source</a><br>»Akh, chudna bŭlgarska zemʹo, poli͡ushvaĭ t͡sŭfti͡ashti zhita«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">BGN/PCGN</span><a href="https://assets.publishing.service.gov.uk/media/6329a3ea8fa8f53cb3746e21/ROMANIZATION_OF_BULGARIAN_with_examples.pdf" class="tag tag-light">Source</a><br>»Akh, chudna balgarska zemyo, polyushvay tsaftyashti zhita«</p>   
+      </div>
+     </div>
+
+    <div id="bg1" class="title title-secondary title-underlined">Bulgarian Transliteration Table</div>
+    <div class="table-container">
+    <table>
+  <thead>
+    <tr>
+      <th>Cyrillic</th><th>DIN 1460</th><th>ALA LC / British Library</th><th>ISO 9</th><th>BNF</th><th>BGN/PCGN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Standard Letters -->
+    <td class="cyrillic">а</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td></tr>
+    <td class="cyrillic">б</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td></tr>
+    <td class="cyrillic">в</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td></tr>
+    <td class="cyrillic">г</td><td>g</td><td>g</td><td>g</td><td>g</td><td>g</td></tr>
+    <td class="cyrillic">д</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td></tr>
+    <td class="cyrillic">е</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td></tr>
+    <td class="cyrillic">ж</td><td>ž</td><td>zh</td><td>ž</td><td>ž</td><td>zh</td></tr>
+    <td class="cyrillic">з</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td></tr>
+    <td class="cyrillic">и</td><td>i</td><td>i</td><td>i</td><td>i</td><td>i</td></tr>
+    <td class="cyrillic">й</td><td>j</td><td>ĭ</td><td>i</td><td>j</td><td>y</td></tr>
+    <td class="cyrillic">к</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td></tr>
+    <td class="cyrillic">л</td><td>l</td><td>l</td><td>l</td><td>l</td><td>l</td></tr>
+    <td class="cyrillic">м</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td></tr>
+    <td class="cyrillic">н</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td></tr>
+    <td class="cyrillic">о</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td></tr>
+    <td class="cyrillic">п</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td></tr>
+    <td class="cyrillic">р</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td></tr>
+    <td class="cyrillic">с</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td></tr>
+    <td class="cyrillic">т</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td></tr>
+    <td class="cyrillic">у</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td></tr>
+    <td class="cyrillic">ф</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td></tr>
+    <td class="cyrillic">х</td><td>ch</td><td>kh</td><td>h</td><td>h</td><td>kh</td></tr>
+    <td class="cyrillic">ц</td><td>c</td><td>t͡s</td><td>c</td><td>c</td><td>ts</td></tr>
+    <td class="cyrillic">ч</td><td>č</td><td>ch</td><td>č</td><td>č</td><td>ch</td></tr>
+    <td class="cyrillic">ш</td><td>š</td><td>sh</td><td>š</td><td>š</td><td>sh</td></tr>
+    <td class="cyrillic">щ</td><td>št</td><td>sht</td><td>ŝ</td><td>ŝ</td><td>sht</td></tr>
+    <td class="cyrillic">ю</td><td>ju</td><td>i͡u</td><td>û</td><td>û</td><td>yu</td></tr>
+    <td class="cyrillic">я</td><td>ja</td><td>i͡a</td><td>â</td><td>â</td><td>ya/ia¹</td></tr>
+    <td class="cyrillic">ь</td><td>ʹ</td><td>ʹ</td><td>′</td><td>′</td><td>y</td></tr>
+    <td class="cyrillic">ъ</td><td>ă</td><td>ŭ</td><td>ʺ</td><td>ʺ</td><td>a</td></tr>
+    <tr><td class="between" colspan="6">Archaic Letters</th></tr>
+    <td class="cyrillic">ѣ</td><td>ě</td><td>i͡e</td><td>ě</td><td>ĕ</td><td></td></tr>
+    <td class="cyrillic">ѫ</td><td>ȧ</td><td>u̐</td><td>ǎ</td><td>ă</td><td></td></tr>
+    <td class="cyrillic">ѳ</td><td></td><td></td><td></td><td>f̀</td><td></td></tr>
+    <td class="cyrillic">ѵ</td><td></td><td></td><td></td><td>ỳ</td><td></td></tr>
+    <td class="cyrillic">ѓ</td><td></td><td></td><td></td><td>g</td><td></td></tr>
+    <td class="cyrillic">ѕ</td><td></td><td></td><td></td><td>ẑ</td><td></td></tr>
+    <td class="cyrillic">ѝ</td><td>ì</td><td></td><td></td><td></td><td></td></tr>
+    <td class="cyrillic">ы</td><td>y</td><td>y</td><td>y</td><td></td><td></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="notes-container">
+  <div class="notes-header">
+    <h4 class="notes-title">Notes</h4>
+    <span class="notes-chevron">+</span>
+  </div>
+  <div class="notes-content">
+    <p class="text text-muted" data-note="1">¹ position-dependent conversion: if in final position, <span class="tag tag-primary">ия</span> is romanized as <span class="tag tag-primary">ia</span> (София = Sofia)</p>
+  </div>
+</div>    
+
+<div id="rusyn" class="title title-primary">Rusyn</div>
+
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Supported Standards</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <span class="tag tag-highlight">DIN 1460</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>
+          <span class="tag tag-highlight">ALA-LC</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.loc.gov/catdir/cpso/romanization/rusyn.pdf" class="tag tag-light">Source</a><br>
+          <span class="tag tag-highlight">ISO 9</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://www.bsb-muenchen.de/fileadmin/pdf/osteuropa/transliterationsvergleich_gesamt_202106.pdf" class="tag tag-light">Source</a><br>
+          <span class="tag tag-highlight">BGN/PCGN 2016</span><span class="tag tag-green" title="reverse conversion works for this combination">↻</span><a href="https://assets.publishing.service.gov.uk/media/5d94678d40f0b65e5cf93f3b/ROMANIZATION_OF_RUSYN.pdf" class="tag tag-light">Source</a><br>
+          <span class="tag tag-highlight">Polish Transcription</span><a href="https://pl.wikipedia.org/wiki/J%C4%99zyk_rusi%C5%84ski#Alfabet" class="tag tag-light">Source</a><br>
+        </div>
+      </div>
+
+
+    <div class="box box-primary">
+      <span class="tag tag-danger">Note on Use</span>
+      <p class="text">For Rusyn materials published in the Vojvodina, Bačka, and Srem regions, the letter <span class="tag tag-primary">и</span> is romanized as <span class="tag tag-primary">i</span>, with places of publication including Belgrade, Djurdjevo, Kucura, Novi Sad, Pančevo, Ruski Krstur, Sremska Mitrovica, and Subotica. For all other Rusyn materials, <span class="tag tag-primary">и</span> is romanized as <span class="tag tag-primary">y</span>. This goes for ALA LC and DIN 1460. (See <a href="https://loc.gov/catdir/cpso/romanization/rusyn.pdf" style="color: #4268BF;">loc.gov</a>)</p>
+      <p class="text">You can account for this by selecting the DIN or ALA Standard that designates Vojvodina, Bačka, and Srem regions in brackets.</p>
+      <p class="text"><span class="tag tag-primary">л̌</span>, <span class="tag tag-primary">ô</span>, <span class="tag tag-primary">э</span> and <span class="tag tag-primary">Ѣ</span> are anachronistic characters for which only some standards provide a latin equivalent.</p>
+    </div>
+
+  <div id="rue1" class="title title-secondary title-underlined">Rusyn Transliteration Table</div>
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Cyrillic</th>
+        <th>DIN 1460</th>
+        <th>ALA-LC</th>
+        <th>ISO 9</th>
+        <th>BGN/PCGN</th>
+        <th>Polish Transcription</th>
+      </tr>
+      <tr><td class="cyrillic">а</td><td>a</td><td>a</td><td>a</td><td>a</td><td>a</td></tr>
+      <tr><td class="cyrillic">б</td><td>b</td><td>b</td><td>b</td><td>b</td><td>b</td></tr>
+      <tr><td class="cyrillic">в</td><td>v</td><td>v</td><td>v</td><td>v</td><td>v</td></tr>
+      <tr><td class="cyrillic">г</td><td>g</td><td>g</td><td>g</td><td>h</td><td>h</td></tr>
+      <tr><td class="cyrillic">ґ</td><td>g</td><td>g</td><td>g̀</td><td>g</td><td>g</td></tr>
+      <tr><td class="cyrillic">д</td><td>d</td><td>d</td><td>d</td><td>d</td><td>d</td></tr>
+      <tr><td class="cyrillic">е</td><td>e</td><td>e</td><td>e</td><td>e</td><td>e</td></tr>
+      <tr><td class="cyrillic">ё</td><td>ë</td><td>ë</td><td>jo</td><td>ô</td><td>e</td></tr>
+      <tr><td class="cyrillic">є</td><td>je</td><td>i͡e</td><td>ê</td><td>ye</td><td>je</td></tr>
+      <tr><td class="cyrillic">ж</td><td>ž</td><td>z͡h</td><td>ž</td><td>zh</td><td>ż</td></tr>
+      <tr><td class="cyrillic">з</td><td>z</td><td>z</td><td>z</td><td>z</td><td>z</td></tr>
+      <tr><td class="cyrillic">и</td><td>i/y</td><td>i/y</td><td>i</td><td>y</td><td>y</td></tr>
+      <tr><td class="cyrillic">і</td><td>i</td><td>i</td><td>ì</td><td>i</td><td>a</td></tr>
+      <tr><td class="cyrillic">ї</td><td>i</td><td>i</td><td>ï</td><td>yi</td><td>ji</td></tr>
+      <tr><td class="cyrillic">й</td><td>j</td><td>ĭ</td><td>j</td><td>y</td><td>j</td></tr>
+      <tr><td class="cyrillic">к</td><td>k</td><td>k</td><td>k</td><td>k</td><td>k</td></tr>
+      <tr><td class="cyrillic">л</td><td>l</td><td>l</td><td>l</td><td>l</td><td>ł</td></tr>
+      <tr><td class="cyrillic">л̌</td><td>ł</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="cyrillic">м</td><td>m</td><td>m</td><td>m</td><td>m</td><td>m</td></tr>
+      <tr><td class="cyrillic">н</td><td>n</td><td>n</td><td>n</td><td>n</td><td>n</td></tr>
+      <tr><td class="cyrillic">о</td><td>o</td><td>o</td><td>o</td><td>o</td><td>o</td></tr>
+      <tr><td class="cyrillic">ô</td><td>ô</td><td>ô</td><td></td><td></td><td></td></tr>
+      <tr><td class="cyrillic">п</td><td>p</td><td>p</td><td>p</td><td>p</td><td>p</td></tr>
+      <tr><td class="cyrillic">р</td><td>r</td><td>r</td><td>r</td><td>r</td><td>r</td></tr>
+      <tr><td class="cyrillic">с</td><td>s</td><td>s</td><td>s</td><td>s</td><td>s</td></tr>
+      <tr><td class="cyrillic">т</td><td>t</td><td>t</td><td>t</td><td>t</td><td>t</td></tr>
+      <tr><td class="cyrillic">у</td><td>u</td><td>u</td><td>u</td><td>u</td><td>u</td></tr>
+      <tr><td class="cyrillic">ф</td><td>f</td><td>f</td><td>f</td><td>f</td><td>f</td></tr>
+      <tr><td class="cyrillic">х</td><td>ch</td><td>k͡h</td><td>h</td><td>kh</td><td>ch</td></tr>
+      <tr><td class="cyrillic">ц</td><td>c</td><td>t͡s</td><td>c</td><td>ts</td><td>c</td></tr>
+      <tr><td class="cyrillic">ч</td><td>č</td><td>ch</td><td>č</td><td>ch</td><td>cz</td></tr>
+      <tr><td class="cyrillic">ш</td><td>š</td><td>sh</td><td>š</td><td>sh</td><td>sz</td></tr>
+      <tr><td class="cyrillic">щ</td><td>šč</td><td>shch</td><td>ŝ</td><td>shch</td><td>szcz</td></tr>
+      <tr><td class="cyrillic">ъ</td><td>"</td><td>"</td><td>"</td><td>"</td><td>a</td></tr>
+      <tr><td class="cyrillic">ы</td><td>ŷ</td><td>ŷ</td><td>y</td><td>y</td><td>y</td></tr>
+      <tr><td class="cyrillic">ь</td><td>'</td><td>'</td><td>'</td><td>'</td><td></td></tr>
+      <tr><td class="cyrillic">э</td><td>è</td><td>ė</td><td></td><td></td><td></td></tr>
+      <tr><td class="cyrillic">ю</td><td>ju</td><td>i͡u</td><td>û</td><td>yu</td><td>ju</td></tr>
+      <tr><td class="cyrillic">я</td><td>ja</td><td>i͡a</td><td>â</td><td>ya</td><td>ja</td></tr>
+      <tr><td class="cyrillic">Ѣ</td><td>ě</td><td>î</td><td></td><td></td><td></td></tr>
+    </table>
+  </div>
+
+
+    <div id="romanian" class="title title-primary">Romanian</div>
+      <div class="text">
+    </div>
+    
+    <div class="box box-primary">
+      <span class="tag tag-highlight">Overview</span>
+      <p>Yniversalist supports three varieties of Romanian Cyrillic: the Bessarabian/Moldovan variety (which uses a variant of the Russian Civil Script), and two historical varieties used in Wallachia and the Old Kingdom until approximately 1880 (Slavonic and Transitional).</p>
+      <p>The Slavonic and Transitional scripts can be converted to approximated Latin Romanian text that is more legible and suitable for machine translation. These scripts can also be transliterated according to the ALA-LC Romanian Cyrillic transliteration standard.</p>
+      <p>Additionally, the Moldovan standard can be converted to other Russian-based scholarly standards to comply with library cataloging practices.</p>
+    </div>
+
+    <div id="ro1" class="title title-secondary title-underlined">Varieties of Wallachia and the Old Kingdom</div>
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Slavonic Script</span>
+          <span class="tag tag-light"><a href="http://dspace.bcucluj.ro/handle/123456789/12507">Acathistiiariu cu multe (1), 1763</a></span>
+        <div class="title title-tertiary">»Динь пать ши дни сомнь май рѫдикать Дмне: минтѣ мѣ ѡ лꙋминѣꙁъ ши нима, ши бꙋзеле мѣле ле дешкиде, ка съ те лаꙋдь пре тине сфитъ Троицъ.«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted-2"><span class="tag tag-highlight">Romanised Orthography</span><br>»Dină pată și dni somnă mai râdicată Dmne: mintea mea o luminează șii nima, șii buzele meale le deșichide, ca să te laudă pre tine sfită Troiță.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC</span><a href="https://www.loc.gov/catdir/cpso/romanization/romanian.pdf" class="tag tag-light">Source</a><br>»Dinʹ patʹ și dni somnʹ maĭ râdicatʹ Dmne: mintea mea ō luminează și nima, și buzele meale le deșchide, ca să te laudʹ pre tine sfită Troiță.«</p>
+        </div>
+      </div>
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Transitional Script</span>
+          <span class="tag tag-light"><a href="https://commons.wikimedia.org/wiki/File:C%C4%83l%C4%83torii_pe_Dun%C4%83re_%C8%99i_%C3%AEn_Bulgaria-p.p.16-17.jpg">Călătorii pe Dunăre, 1858</a></span>
+        <div class="title title-tertiary">»Іѕtерꙋл еѕе ԁіn ꚏара Челꚏілор, ші ԁꙋпъ че tрече Еꙋропа întреаъ întръ прin Skiꚏia прintр'ꙋna din mърџiniлe eĭ.«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+    <p class="text text-muted-2"><span class="tag tag-highlight">Romanised Orthography</span><br>»Isterul ese din țara Celților, și după ce trece Europa întreaă întră prin Sciția printr'una din mărghinile ei.«</p>
+      <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC</span><a href="https://www.loc.gov/catdir/cpso/romanization/romanian.pdf" class="tag tag-light">Source</a><br>»Iżterul eże ԁin țara Ċelților, și ԁupă ċe treċe Europa întreaă întră prin Skiția printr'una din mărġinile eĭ.«</p>
+        </div>
+      </div>
+
+    <div class="box box-primary">
+      <span class="tag tag-danger">Note on Use</span>
+      <p class="text">When romanising Romanian Slavonic, the quality of the conversion depends on the quality and regularity of the input. Try to ensure that the text you are trying to convert contains only the characters listed in the table below, or those available on the built-in keyboard. It can also help to remove diacritics that are not represented in contemporary Romanian orthography.</p>
+      <p class="text">For converting Slavonic texts, good OCR transcription results can be achieved with <a href="https://app.transkribus.org/models/public/272469" style="color: #4268BF;">this Transkribus model for general Church Slavonic</a>, and <a href="https://app.transkribus.org/models/public/52922" style="color: #4268BF;">this Transkribus model for Romanian Slavonic Script</a>. For texts written in the transitional alphabet, use the OCR output from <a href="https://app.transkribus.org/models/public/117113" style="color: #4268BF;">this Transkribus model</a></p>
+      <p class="text">For conversion to an approximated modernised Latin orthography, Yniversalist includes two versions to choose from: Slavonic and Transitional. The differences are minor (see table below) but might be helpful to produce a better intelligable result.</a></p>    
+    </div>
+    <div id="ro2" class="title title-secondary title-underlined">Romanian Slavonic and Transitional Script</div>
+    <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Cyrillic ¹</th><th>Latin</th><th>ALA LC</th>
+                <th>Cyrillic</th><th>Latin</th><th>ALA LC</th>
+            </tr>
+        </thead>
+        <tbody>
+              <tr>
+                <td class="cyrillic">а</td><td colspan="2">a</td>
+                <td class="cyrillic">ḑ</td><td>dz</td><td></td>
+            </tr>
+            <tr>
+                <td class="cyrillic">б</td><td colspan="2">b</td>
+                <td class="cyrillic">ꙟ; ↑</td><td colspan="2">î/în/îm ⁶</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">в</td><td colspan="2">v</td>
+                <td class="cyrillic">ѳ</td><td>th</td><td>ṫ</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">г ²</td><td>g/gh</td><td>ġ/ġh</td>
+                <td class="cyrillic">ѱ</td><td colspan="2">ps</td>
+            </tr>
+            <tr>
+              <td class="cyrillic">џ ³</td><td>g/ge/gi</td><td>ġ/ġe/ġi</td>
+              <td class="cyrillic">ѯ</td><td colspan="2">x</td>
+          </tr>
+            <tr>
+                <td class="cyrillic">д; ԁ, ꚁ**</td><td colspan="2">d</td>
+                <td class="cyrillic">ѥ</td><td colspan="2">ie</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">е, є; ε</td><td colspan="2">e</td>
+                <td class="cyrillic">ѧ</td><td>ia/ea ⁷</td><td>ĭa</td> 
+            </tr>
+            <tr>
+                <td class="cyrillic">ж</td><td colspan="2">j</td>
+                <td class="cyrillic">ѣ</td><td colspan="2">ea</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">з; ӡ, ꙁ**</td><td colspan="2">z</td>
+                <td class="cyrillic">ꙗ; я, ѩ</td><td>ia/ea ⁷</td><td>ia</td>
+            </tr>
+            <tr>
+              <td class="cyrillic">ѕ</td><td>dz</td><td>ż</td>
+              <td class="cyrillic">ю; ĭꙋ</td><td colspan="2">iu</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">И</td><td colspan="2">i</td>
+                <td class="cyrillic">Ꙋ</td><td></td><td>U</td>
+            </tr>
+            <tr>
+              <td class="cyrillic">Й</td><td>i</td><td>ĭ</td>
+              <td class="cyrillic">ы; ꙑ</td><td>â/î ⁸</td><td>y</td>
+            </tr>
+            <tr>
+              <td class="cyrillic">і</td><td colspan="2">i</td>
+              <td class="cyrillic">ѫ</td><td colspan="2">â/î ⁸</td>
+            </tr>
+            <tr>
+              <td class="cyrillic">ї</td><td>i</td><td>ī</td>
+              <td class="cyrillic">Ъ</td><td colspan="2">ă</td>
+            </tr>
+            <tr>
+              <td class="cyrillic">ꙇ, ĭ</td><td>i</td><td></td>
+              <td class="cyrillic">Ь</td><td>ă</td><td>ʹ</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">ѵ ⁴</td><td>[i/u]</td><td>[ẏ/v̇]</td>
+                <td class="cyrillic">э, Ꙋ̆</td><td>ă?</td><td></td>
+            </tr>
+            <tr>
+              <td class="cyrillic">к / k ⁵</td><td colspan="2">c/ch</td>
+              <td class="cyrillic">щ, ꚗ**</td><td colspan="2">șt</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">л; λ</td><td colspan="2">l</td>
+                <td class="cyrillic">ш</td><td colspan="2">ș</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">м</td><td colspan="2">m</td>
+                <td class="cyrillic">ч ⁹</td><td>c/ce/ci</td><td>ċ/ċe/ċi</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">н</td><td colspan="2">n</td>
+                <td class="cyrillic">ц; ꚏ**</td><td colspan="2">ț</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">ѡ</td><td>o</td><td>ō</td>
+                <td class="cyrillic">х</td><td colspan="2">h</td>
+            </tr>           
+            <tr>
+                <td class="cyrillic">ѻ, о</td><td colspan="2">o</td>
+                <td class="cyrillic">ф</td><td colspan="2">f</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">п</td><td colspan="2">p</td>
+                <td class="cyrillic">ȣ, ɣ</td><td>u</td><td></td>
+            </tr>
+            <tr>
+                <td class="cyrillic">р</td><td colspan="2">r</td>
+                <td class="cyrillic">у, ѹ, Ꙋ, Ȣ**</td><td colspan="2">u</td>
+            </tr>
+            <tr>
+                <td class="cyrillic">с / ѕ</td><td colspan="2">s</td>
+                <td class="cyrillic">т</td><td colspan="2">t</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+
+    <div class="notes-container">
+      <div class="notes-header">
+        <h4 class="notes-title">Notes</h4>
+        <span class="notes-chevron">+</span>
+      </div>
+      <div class="notes-content">
+        <p class="text text-muted" data-note="1">¹ Letters before <span class="tag tag-primary">;</span> are represented in Slavonic and ALA LC transliteration, letters after <span class="tag tag-primary">;</span> are only represented in the conversion paradigm for Slavonic and Transitional Script. However, if those letters are followed by <span class="tag tag-primary">**</span>, they have been included in the Yniversalist conversion mapping for ALA-LC due to their frequency in Transkribus OCR output. Letters after <span class="tag tag-primary">/</span> are how the conversion mapping for transitional scripture for the specified latin eqivalent converts these letters.</p>
+        <p class="text text-muted" data-note="2">² <span class="tag tag-primary">г</span> → <span class="tag tag-primary">g</span>/<span class="tag tag-primary">gh</span> before <span class="tag tag-primary">и</span>, <span class="tag tag-primary">е</span>, <span class="tag tag-primary">і</span> <br>Gh if before e or i</p>
+        <p class="text text-muted" data-note="3">³ <span class="tag tag-primary">g</span>, <span class="tag tag-primary">ge</span> before <span class="tag tag-primary">a</span>, <span class="tag tag-primary">gi</span> before <span class="tag tag-primary">o</span>/<span class="tag tag-primary">u</span> // ALA LC: <span class="tag tag-primary">Ġ</span>, <span class="tag tag-primary">Ġe</span> before <span class="tag tag-primary">a</span>, <span class="tag tag-primary">Ġi</span> before <span class="tag tag-primary">o</span>/<span class="tag tag-primary">u</span></p>
+        <p class="text text-muted" data-note="4">⁴ In Romanian Slavonic, like in Church Slavonic, <span class="tag tag-primary">Ѵ</span> can represent both vowel and consonant. As this is highly context-dependent, Yniversalist does not convert this letter but instead provides the possible variants for Slavonic/Transitional and ALA LC.</p>
+        <p class="text text-muted" data-note="5">⁵ <span class="tag tag-primary">к</span> → <span class="tag tag-primary">c</span>/<span class="tag tag-primary">ch</span> before <span class="tag tag-primary">и</span>, <span class="tag tag-primary">е</span>, <span class="tag tag-primary">і</span> (e.g., <span class="tag tag-primary">ки</span> → <span class="tag tag-primary">chi</span>)</p>
+        <p class="text text-muted" data-note="6">⁶ <span class="tag tag-primary">Ꙟ</span> → <span class="tag tag-primary">În</span> but <span class="tag tag-primary">î</span> if before <span class="tag tag-primary">m</span>/<span class="tag tag-primary">n</span> and <span class="tag tag-primary">îm</span> if before <span class="tag tag-primary">b</span>/<span class="tag tag-primary">p</span></p>
+        <p class="text text-muted" data-note="7">⁷ <span class="tag tag-primary">я</span>, <span class="tag tag-primary">ѩ</span> and <span class="tag tag-primary">Ꙗ</span> → <span class="tag tag-primary">ia</span>, <span class="tag tag-primary">ea</span> after consonant and <span class="tag tag-primary">e</span></p>
+        <p class="text text-muted" data-note="8">⁸ <span class="tag tag-primary">â</span> if in medial, <span class="tag tag-primary">î</span> if in final position</p>
+        <p class="text text-muted" data-note="9">⁹ <span class="tag tag-primary">ċ</span>, <span class="tag tag-primary">ċe</span> if before <span class="tag tag-primary">a</span>, <span class="tag tag-primary">ċi</span> if before <span class="tag tag-primary">o</span>o/<span class="tag tag-primary">u</span>, and consonants</p>
+      </div>
+    </div>
+
+    <div id="ro3" class="title title-secondary title-underlined">Varieties of Bessarabia and Moldova</div>
+
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">pre 1917 Bessarabia</span>
+        <span class="tag tag-light"><a href="https://dacoromania.net/periodicals/glasul_basarabiei_%28newspaper_1913%E2%80%931914%29">Glasul Basarbiei, 1913</a></span>
+        <div class="title title-tertiary">»Нештіинца, липса де ынвъцътуръ, о адус пе молдовеній ноштри ла старя ынтунекатъ ши ръ.«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted-2"><span class="tag tag-highlight">Romanised Orthography</span><br>»Neștiința, lipsa de învățătură, o adus pe moldovenii noștri la starea întunecată și ră.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC</span><a href="https://www.loc.gov/catdir/cpso/romanization/nonslav.pdf" class="tag tag-light">Source</a><br>Text</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">DIN 1460</span><a href="https://www.unige.ch/biblio_info/files/1116/1054/7783/DIN_1460-2_2011.pdf" class="tag tag-light">Source</a><br>Text</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO 9</span><a href="https://transliteration.eki.ee/pdf/Moldovan.pdf" class="tag tag-light">Source</a><br>Text</p>    
+        </div>
+      </div>
+
+      <div class="box box-primary-child">
+        <span class="tag tag-highlight">Moldovan ASSR / MSSR / TRANSNISTRIA</span>
+        <span class="tag tag-light"><a href="https://dacoromania.net/wiki/%D0%BC%D0%BE%D0%BB%D0%B4%D0%B0%D0%B2%D1%81%D0%BA%D0%B8%D0%B9_%D1%8F%D0%B7%D1%8B%D0%BA">Plugaru Roș, 1927</a></span>
+        <div class="title title-tertiary">»Диштептаря културий молдовенешть ый порниты пи друму нэдежник.«</div>
+      </div>
+      <div class="notes-container">
+        <div class="notes-header">
+          <h4 class="notes-title">Show Conversion</h4>
+          <span class="notes-chevron">+</span>
+        </div>
+        <div class="notes-content">
+          <p class="text text-muted-2"><span class="tag tag-highlight">Romanised Orthography</span><br>»Dișteptarea culturii moldovenești îi pornitî pi drumu nădejnic.«</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ALA LC</span><a href="https://www.loc.gov/catdir/cpso/romanization/nonslav.pdf" class="tag tag-light">Source</a><br>Text</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">DIN 1460</span><a href="https://www.unige.ch/biblio_info/files/1116/1054/7783/DIN_1460-2_2011.pdf" class="tag tag-light">Source</a><br>Text</p>
+          <p class="text text-muted-2"><span class="tag tag-highlight">ISO 9</span><a href="https://transliteration.eki.ee/pdf/Moldovan.pdf" class="tag tag-light">Source</a><br>Text</p>
+        </div>
+      </div>
+
+    <div id="ro4" class="title title-secondary title-underlined">Romanised Moldovan Cyrillic</div>
+    <div class="table-container">
+      <table>
+      <thead>
+          <tr>
+              <th>Cyrillic</th>
+              <th>Latin</th>
+              <th>Cyrillic</th>
+              <th>Latin</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td class="cyrillic">А</td>
+              <td>A</td>
+              <td class="cyrillic">У</td>
+              <td>U</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">Б</td>
+              <td>B</td>
+              <td class="cyrillic">Ф</td>
+              <td>F</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">В</td>
+              <td>V</td>
+              <td class="cyrillic">Х</td>
+              <td>H</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">Д</td>
+              <td>D</td>
+              <td class="cyrillic">Э</td>
+              <td>Ă</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">Ж</td>
+              <td>J</td>
+              <td class="cyrillic">Г</td>
+              <td>G/Gh²</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">З</td>
+              <td>Z</td>
+              <td class="cyrillic">Я</td>
+              <td>Ia/Ea³</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">И, Й, І</td>
+              <td>I¹</td>
+              <td class="cyrillic">Ы</td>
+              <td>Â/Î⁴</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">Л</td>
+              <td>L</td>
+              <td class="cyrillic">К</td>
+              <td>C/Ch⁵</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">М</td>
+              <td>M</td>
+              <td class="cyrillic">Ч</td>
+              <td>C/Ce⁶</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">Н</td>
+              <td>N</td>
+              <td class="cyrillic">Ю</td>
+              <td>Iu</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">О</td>
+              <td>O</td>
+              <td class="cyrillic">Ь</td>
+              <td>I</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">П</td>
+              <td>P</td>
+              <td class="cyrillic">Ъ</td>
+              <td>Ă⁷</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">Р</td>
+              <td>R</td>
+              <td class="cyrillic">Ц</td>
+              <td>Ț</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">С</td>
+              <td>S</td>
+              <td class="cyrillic">Ш</td>
+              <td>Ș</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">Т</td>
+              <td>T</td>
+              <td class="cyrillic">Щ</td>
+              <td>Șt⁸</td>
+          </tr>
+          <tr>
+              <td class="cyrillic">Ӂ</td>
+              <td>G⁹</td>
+              <td class="cyrillic">Е</td>
+              <td>E</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+  <div class="notes-container">
+    <div class="notes-header">
+      <h4 class="notes-title">Notes</h4>
+      <span class="notes-chevron">+</span>
+    </div>
+    <div class="notes-content">
+      <p class="text text-muted" data-note="1">¹ <span class="tag tag-primary">І</span> only in pre-reform Bessarabian script</p>
+      <p class="text text-muted" data-note="2">² <span class="tag tag-primary">gh</span> before <span class="tag tag-primary">и</span>, <span class="tag tag-primary">е</span>, <span class="tag tag-primary">і</span>; <span class="tag tag-primary">g</span> otherwise</p>
+      <p class="text text-muted" data-note="3">³ <span class="tag tag-primary">ia</span>, <span class="tag tag-primary">ea</span> after consonant and <span class="tag tag-primary">e</span></p>
+      <p class="text text-muted" data-note="4">⁴ <span class="tag tag-primary">î</span> at word boundaries; <span class="tag tag-primary">â</span> elsewhere</p>
+      <p class="text text-muted" data-note="5">⁵ <span class="tag tag-primary">c</span>/<span class="tag tag-primary">Ch</span> before <span class="tag tag-primary">и</span>, <span class="tag tag-primary">е</span>, <span class="tag tag-primary">і</span></p>
+      <p class="text text-muted" data-note="6">⁶ <span class="tag tag-primary">ce</span> before <span class="tag tag-primary">a</span>; <span class="tag tag-primary">c</span> before <span class="tag tag-primary">i</span>/<span class="tag tag-primary">e</span>, <span class="tag tag-primary">ci</span> elsewhere NOT PROPERLY IMPLEMENTED</p>
+      <p class="text text-muted" data-note="7">⁷ in pre-reform Bessarabian script, removed in 1957. May sometimes also be converted to <span class="tag tag-primary">ŭ</span>, which is not respected by Yniversalist</p>
+      <p class="text text-muted" data-note="8">⁸ removed in 1957</p>
+      <p class="text text-muted" data-note="9">⁹ introduced in 1967</p>
+    </div>
+  </div>
+
+    <div class="box box-primary">
+      <span class="tag tag-danger">Note on Results</span>
+      <p class="text">Conversion of Bessarabian / Moldovan Cyrillic currently works best with the post-1967 standard. Other, often transitional, variants are more prone to Romanisation errors.</p>
+    </div>
+
+    <div class="box box-primary">
+      <span class="tag tag-danger">Note on Scholarly Transliteration</span>
+      <p class="text">In the case of Moldovan Cyrillic, library catalogues tend to follow the respective conversion standard for <a href="#russian">Russian</a>, with adaptions for the following letters:</p>
+      <p class="text"><span class="tag tag-primary">Ӂ</span> is converted as follows:</p>
+        <li>ALA-LC / British Library → <span class="tag tag-primary">J</span></li>
+        <li>DIN 1460 → <span class="tag tag-primary">dž</span></li>
+        <li>ISO 9 / BNF → <span class="tag tag-primary">Z̆</span></li>
+      <p class="text"><span class="tag tag-primary">Ъ</span> is converted as follows:</p>
+        <li>ALA-LC / British Library → <span class="tag tag-primary">none</span></li>
+        <li>DIN 1460 → <span class="tag tag-primary">none</span></li>
+        <li>ISO 9 / BNF → <span class="tag tag-primary">ʺ</span></li>
+      <p class="text"><span class="tag tag-primary">ь</span> is converted as follows:</p>
+        <li>ALA-LC / British Library → <span class="tag tag-primary">ʹ</span></li>
+        <li>DIN 1460 → <span class="tag tag-primary">ʹ</span></li>
+        <li>ISO 9 / BNF → <span class="tag tag-primary">ʹ</span></li>
+    </div>
+    </div>
+  </div>
+</div>
+
+  <script src="scripts/storage.js"></script>
+  <script src="scripts/transcriptionMaps.js"></script>
+  <script src="scripts/documentation.js"></script>
+  <script src="scripts/transcriber.js"></script>
+  <script src="characterNormalizer.js"></script>
+  <script src="scripts/keyboard.js" charset="UTF-8"></script>
+  <script src="scripts/history-extension.js"></script>
+  <script src="scripts/notes-extension.js"></script>
+</body>
+</html>
